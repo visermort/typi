@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6356973ccd86a8531ac31a1a8ab61b8d",
+    "content-hash": "098d143a2f93de3273f0aa131c98bc1b",
     "packages": [
         {
             "name": "bkwld/croppa",
@@ -4345,6 +4345,41 @@
                 "tree"
             ],
             "time": "2019-09-03T21:47:23+00:00"
+        },
+        {
+            "name": "typicms/news",
+            "version": "7.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TypiCMS/News.git",
+                "reference": "0ad7c6c22f2472ba478bb3c46bd7586b21baa291"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TypiCMS/News/zipball/0ad7c6c22f2472ba478bb3c46bd7586b21baa291",
+                "reference": "0ad7c6c22f2472ba478bb3c46bd7586b21baa291",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TypiCMS\\Modules\\News\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Samuel De Backer",
+                    "email": "sdebacker@gmail.com"
+                }
+            ],
+            "time": "2019-09-06T11:32:29+00:00"
         },
         {
             "name": "typicms/objects",
