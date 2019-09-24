@@ -11,7 +11,7 @@ return [
     | will not appears in URLs.
     |
     */
-    'main_locale_in_url' => true,
+    'main_locale_in_url' => false,
 
     /*
     |--------------------------------------------------------------------------
