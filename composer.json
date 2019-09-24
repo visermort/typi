@@ -48,7 +48,6 @@
         "typicms/laravel-translatable-bootforms": "~4.1",
         "typicms/menus": "~7.0",
         "typicms/nestablecollection": "~1.1.15",
-        "typicms/news": "^7.0",
         "typicms/objects": "~7.0",
         "typicms/pages": "~7.0",
         "typicms/roles": "~7.0",

@@ -10,6 +10,7 @@ use TypiCMS\Modules\Files\Models\File;
 use TypiCMS\Modules\Files\Traits\HasFiles;
 use TypiCMS\Modules\History\Traits\Historable;
 use TypiCMS\Modules\News\Presenters\ModulePresenter;
+use App\Classes\Traits\Taggable;
 
 class News extends Base
 {
@@ -17,6 +18,7 @@ class News extends Base
     use HasTranslations;
     use Historable;
     use PresentableTrait;
+    use Taggable;
 
     protected $presenter = ModulePresenter::class;
 
