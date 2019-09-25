@@ -271,6 +271,8 @@ return [
         'Form' => TypiCMS\Form\Facades\Form::class,
         'TranslatableBootForm' => TypiCMS\LaravelTranslatableBootForms\Facades\TranslatableBootForm::class,
 
+        'CustomMenu' => App\Classes\Menu\Menu::class,
+
     ],
 
 ];
