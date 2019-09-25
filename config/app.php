@@ -188,6 +188,11 @@ return [
          * they should be set before Core Service provider.
          */
         TypiCMS\Modules\News\Providers\ModuleProvider::class,
+
+        /*
+         * Service provider for typiCMS Scaffold module
+         */
+        TypiCMS\Modules\Products\Providers\ModuleProvider::class,
         /*
          * TypiCMS Core Service Provider...
          */
