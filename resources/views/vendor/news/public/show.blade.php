@@ -20,6 +20,7 @@
         <div class="news-body">{!! $model->present()->body !!}</div>
         @include('files::public._documents')
         @include('files::public._images')
+        @include('tags::public._list_module')
     </article>
 
 @endsection
