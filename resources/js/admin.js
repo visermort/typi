@@ -70,6 +70,11 @@ import ItemListPositionInput from './components/ItemListPositionInput.vue';
 import History from './components/History.vue';
 
 /**
+ * Reports
+ */
+import Reports from './components/Reports.vue';
+
+/**
  * Files
  */
 import Filepicker from './components/Filepicker.vue';
@@ -91,6 +96,7 @@ new Vue({
         Files,
         FileField,
         History,
+        Reports,
     },
 }).$mount('#app');
 

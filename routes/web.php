@@ -17,4 +17,5 @@
 
 Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('reports', '\App\Http\Controllers\Admin\ReportsController@index');
+    Route::get('reports/data', '\App\Http\Controllers\Admin\ReportsController@data');
 });

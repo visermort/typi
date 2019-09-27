@@ -4,6 +4,9 @@
 
 @section('content')
 
-Content of reports
+<reports>
+
+</reports>
+
 
 @endsection
