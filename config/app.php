@@ -272,6 +272,7 @@ return [
         'TranslatableBootForm' => TypiCMS\LaravelTranslatableBootForms\Facades\TranslatableBootForm::class,
 
         'CustomMenu' => App\Classes\Menu\Menu::class,
+        'MultiInput' => App\Classes\Forms\MultiInput::class,
 
     ],
 

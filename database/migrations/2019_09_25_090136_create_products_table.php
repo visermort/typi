@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->json('slug');
             $table->json('summary');
             $table->json('body');
+            $table->json('advantages')->nullable(true);
             $table->timestamps();
         });
     }

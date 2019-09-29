@@ -16,5 +16,10 @@
     {!! TranslatableBootForm::hidden('status')->value(0) !!}
     {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}
 </div>
+
+<div class="form-group">
+    {!! MultiInput::render('advantages', 'advantages', $model) !!}
+</div>
+
 {!! TranslatableBootForm::textarea(__('Summary'), 'summary')->rows(4) !!}
 {!! TranslatableBootForm::textarea(__('Body'), 'body')->addClass('ckeditor') !!}

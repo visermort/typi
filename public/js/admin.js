@@ -53971,6 +53971,7 @@ var map = {
 	"./enable-selectize.js": "./resources/js/admin/enable-selectize.js",
 	"./jquery.slug.js": "./resources/js/admin/jquery.slug.js",
 	"./lang-switcher-active.js": "./resources/js/admin/lang-switcher-active.js",
+	"./multi-input.js": "./resources/js/admin/multi-input.js",
 	"./offcanvas-admin.js": "./resources/js/admin/offcanvas-admin.js",
 	"./on-drag-file.js": "./resources/js/admin/on-drag-file.js",
 	"./preview-window.js": "./resources/js/admin/preview-window.js",
@@ -54836,6 +54837,81 @@ $(function () {
     $(this).addClass('active');
   });
 });
+
+/***/ }),
+
+/***/ "./resources/js/admin/multi-input.js":
+/*!*******************************************!*\
+  !*** ./resources/js/admin/multi-input.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+(function () {
+  $('.multiinput').each(function (index, element) {
+    var data = $(element).data('value');
+    var attribute = $(element).data('attribute');
+
+    function copyValues(item, parent) {
+      for (var prop in item) {
+        if (_typeof(item[prop]) == 'object') {
+          copyValues(item[prop], parent + '[' + prop + ']');
+        } else {
+          var name = parent + '[' + prop + ']';
+          $(element).find('input[name="' + name + '"]').val(item[prop]);
+          $(element).find('textarea[name="' + name + '"]').html(item[prop]);
+        }
+      }
+    }
+
+    copyValues(data, attribute);
+  });
+  $('body').on('click', '.multiinput-elem-add', function () {
+    var tbody = $(this).closest('.multiinput').find('table tbody');
+    var rows = $(tbody).find('tr');
+
+    if (rows.length) {
+      var newRow = $(rows[0]).clone();
+      console.log(newRow);
+      tbody.append(newRow);
+      clearRowValues(newRow);
+      orderRowNumbers(tbody);
+    }
+  });
+  $('body').on('click', '.multiinput-elem-remove', function () {
+    var tbody = $(this).closest('tbody');
+
+    if ($(tbody).find('tr').length > 1) {
+      $(this).closest('tr').remove();
+      orderRowNumbers(tbody);
+    }
+  });
+
+  function orderRowNumbers(tbody) {
+    var rows = $(tbody).find('tr');
+    var attribute = $(tbody).closest('.multiinput').data('attribute');
+    console.log(attribute);
+    $(rows).each(function (index, row) {
+      var inputs = $(row).find('input,select,textarea');
+      $(inputs).each(function (i, input) {
+        var name = $(input).attr('name');
+        var pattern = '^' + attribute + '\\[\\d+\\]';
+        var replacement = attribute + '[' + index + ']';
+        var newName = name.replace(new RegExp(pattern), replacement);
+        $(input).attr('name', newName);
+        $(input).attr('id', newName);
+        $(input).siblings('label').attr('for', newName);
+      });
+    });
+  }
+
+  function clearRowValues(row) {
+    $(row).find('input').val('');
+    $(row).find('textarea').html('');
+  }
+})();
 
 /***/ }),
 

@@ -1,0 +1,15 @@
+{
+  "single-row" : false,
+  "columns" : [
+    {
+      "name": "title",
+      "title":"Title",
+      "type": "Varchar"
+    },
+    {
+      "name": "description",
+      "title":"Description",
+      "type": "Text"
+    }
+  ]
+}
