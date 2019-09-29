@@ -80,9 +80,13 @@ class MultiInput
     }
     protected function makeElement($column, $index, $value)
     {
+        $type = strtolower($column['type']);
         $columnName =  $this->attribute.'['.$index.']['.$column['name'].']';
-        if (strtolower($column['type']) == 'text') {
+        if ($type == 'text') {
             return TranslatableBootForm::textarea($column['title'], $columnName)->rows(4);
+        }
+        if ($type == 'dropdown') {
+            return TranslatableBootForm::select($column['title'], $columnName, $column['items']);
         }
         return TranslatableBootForm::text($column['title'], $columnName);
     }

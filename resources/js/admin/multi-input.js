@@ -11,6 +11,7 @@
                     var name = parent+'['+prop+']';
                     $(element).find('input[name="'+name+'"]').val(item[prop]);
                     $(element).find('textarea[name="'+name+'"]').html(item[prop]);
+                    $(element).find('select[name="'+name+'"]').val(item[prop]);
                 }
             }
         }
@@ -22,7 +23,6 @@
         var rows = $(tbody).find('tr');
         if (rows.length) {
             var newRow = $(rows[0]).clone();
-            console.log(newRow);
             tbody.append(newRow);
             clearRowValues(newRow);
             orderRowNumbers(tbody)
@@ -41,7 +41,6 @@
     function orderRowNumbers(tbody) {
         var rows = $(tbody).find('tr');
         var attribute = $(tbody).closest('.multiinput').data('attribute');
-        console.log(attribute);
         $(rows).each(function(index, row) {
             var inputs = $(row).find('input,select,textarea');
             $(inputs).each(function(i, input) {

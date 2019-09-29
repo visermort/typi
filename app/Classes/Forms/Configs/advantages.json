@@ -10,6 +10,16 @@
       "name": "description",
       "title":"Description",
       "type": "Text"
+    },
+    {
+      "name": "status",
+      "title":"Status",
+      "type": "Dropdown",
+      "items": {
+        "0": "Waiting",
+        "1": "Active",
+        "2": "Disable"
+      }
     }
   ]
 }
