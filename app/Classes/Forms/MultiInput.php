@@ -151,6 +151,13 @@ class MultiInput
         if ($type == 'dropdown') {
             return TranslatableBootForm::select($column['title'], $columnName, $column['items']);
         }
+        if ($type == 'date') {
+            return TranslatableBootForm::date($column['title'], $columnName);
+        }
+//        if ($type == 'datetime') {
+            //error ((
+//            return TranslatableBootForm::dateTimeLocal($column['title'], $columnName);
+//        }
         return TranslatableBootForm::text($column['title'], $columnName);
     }
 

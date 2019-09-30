@@ -24,7 +24,17 @@ return [
                     "1" => "Active",
                     "2" => "Disable"
                 ]
-            ]
+            ],
+            [
+                "name" => "start_date",
+                "title" => "Start date",
+                "type" => "Date"
+            ],
+//            [
+//                "name" => "start_datetime",
+//                "title" => "Start time",
+//                "type" => "DateTime"
+//            ],
         ]
     ],
     //other configNames
