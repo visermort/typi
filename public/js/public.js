@@ -27799,7 +27799,7 @@ var mySwiper = new Swiper('.swiper-container', {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\typi\resources\js\public.js */"./resources/js/public.js");
+module.exports = __webpack_require__(/*! C:\openserver\domains\typi\resources\js\public.js */"./resources/js/public.js");
 
 
 /***/ })

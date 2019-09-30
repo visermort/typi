@@ -56227,9 +56227,9 @@ module.exports = JSON.parse("{\"# blocks\":\"Aucun bloc de contenu | 1 bloc de c
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OpenServer\domains\typi\resources\js\admin.js */"./resources/js/admin.js");
-__webpack_require__(/*! C:\OpenServer\domains\typi\resources\scss\admin.scss */"./resources/scss/admin.scss");
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\typi\resources\scss\public.scss */"./resources/scss/public.scss");
+__webpack_require__(/*! C:\openserver\domains\typi\resources\js\admin.js */"./resources/js/admin.js");
+__webpack_require__(/*! C:\openserver\domains\typi\resources\scss\admin.scss */"./resources/scss/admin.scss");
+module.exports = __webpack_require__(/*! C:\openserver\domains\typi\resources\scss\public.scss */"./resources/scss/public.scss");
 
 
 /***/ })

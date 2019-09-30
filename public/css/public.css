@@ -14126,6 +14126,15 @@ button.swiper-pagination-bullet {
   height: auto;
 }
 
+.multiinput-item {
+  display: flex;
+}
+
+html, body, p, div, span, title, a, button, h1, h2, h3, h4, h5, h6 {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+
 .skip-to-content {
   position: absolute;
   width: 1px;

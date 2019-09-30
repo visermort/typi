@@ -15,6 +15,12 @@
 @import 'public/navbar-hide-left-button';
 @import 'public/documents';
 @import 'public/images';
+@import 'public/multiinput';
+
+html,body,p,div,span,title,a,button, h1,h2,h3,h4,h5,h6 {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
 
 .skip-to-content {
     @include sr-only;

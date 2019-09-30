@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ config('app.locale') }}">
+<html lang="{{ config('app.locale') }}" >
 
 <head>
 
@@ -38,6 +38,7 @@
 </head>
 
 <body ontouchstart="" class="body-{{ $lang }} @yield('bodyClass') @if ($navbar)has-navbar @endif">
+{{--<bdi>--}}
 
     @include('core::public._google_tag_manager_code')
 
@@ -102,6 +103,7 @@
     @endif
 
     @stack('js')
+{{--</bdi>--}}
 
 </body>
 
