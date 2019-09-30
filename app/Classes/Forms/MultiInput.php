@@ -10,18 +10,22 @@ class MultiInput
     protected $config;
     protected $attribute;
     protected $value;
+    protected $error;
 
+    /**
+     * on admin form
+     *
+     * @param $attribute
+     * @param $configName
+     * @param $model
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public static function render($attribute, $configName, $model)
     {
-        $self = new self();
-        //$self = self::$instance;
-        $self->getConfig($configName);
-
-        if (!is_array($self->config)) {
-            return 'Config file not found or it\'s not valid - '.$configName;
+        $self = self::getSelf($attribute, $configName, $model);
+        if ($self->error) {
+            return $self->error;
         }
-        $self->attribute = $attribute;
-        $self->value = $model->$attribute ? json_decode($model->$attribute) : false;
         return $self->view('main', [
             'title' => $self->title(),
             'body' => $self->body(),
@@ -29,38 +33,67 @@ class MultiInput
             'attribute' => $attribute,
         ]);
     }
+
+    /**
+     * in front
+     *
+     * @param $attribute
+     * @param $configName
+     * @param $model
+     * @param array $options
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
+     */
     public static function publish($attribute, $configName, $model, $options = [])
     {
-        $self = new self();
-        $self->getConfig($configName);
-        if (!is_array($self->config)) {
-            return 'Config file not found or it\'s not valid - '.$configName;
-        }
-        $self->attribute = $attribute;
-        $items = json_decode($model->$attribute, 1);
-        if (!$items) {
+        $self = self::getSelf($attribute, $configName, $model);
+        if ($self->error || !$self->value) {
             return '';
         }
         $template = isset($options['template']) ? $options['template'] : 'multi-input.public.main';
         $itemTemplate = isset($options['item-template']) ? $options['item-template'] : 'multi-input.public.item';
-        $itemsOut = '';
-        foreach ($items as $item) {
-            $itemsOut .= $self->view($itemTemplate, $self->translate($item), false);
+        $items = '';
+        foreach ($self->value as $item) {
+            $items .= $self->view($itemTemplate, $self->translate($item), false);
         }
-        return  $self->view($template, ['items' => $itemsOut], false);
+        return  $self->view($template, ['items' => $items], false);
+    }
+
+    /**
+     * create self instance
+     *
+     * @param $attribute
+     * @param $configName
+     * @param $model
+     * @return MultiInput
+     */
+    public static function getSelf($attribute, $configName, $model)
+    {
+        $self = new self();
+        $self->getConfig($configName);
+        $self->attribute = $attribute;
+        $self->value = $model->$attribute ? json_decode($model->$attribute, 1) : false;
+        return $self;
     }
 
     public function getConfig($configName)
     {
-        $this->config = $this->getJsonStructure($configName);
-        $this->config = !empty($this->config) ? $this->config : $this->getPhpStructure($configName);
-        $columns = [];
+        $this->config = Config('multiinput.'.$configName);
+        if (!$this->config) {
+            $this->error = 'Config not found or not valid - '.$configName;
+            return ;
+        }
         foreach ($this->config['columns'] as $column) {
             $columns[$column['name']] = $column;
         }
         $this->config['columns'] = $columns;
     }
 
+    /**
+     * get translated output with dropdown values replaces
+     *
+     * @param $item
+     * @return array
+     */
     protected function translate($item)
     {
         $out = [];
@@ -79,28 +112,11 @@ class MultiInput
         return $out;
     }
 
-    protected function getJsonStructure($config)
-    {
-        $configFile = __DIR__.'/Configs/'.$config.'.json';
-        if (!file_exists($configFile)) {
-            return false;
-        }
-        return json_decode(file_get_contents($configFile), true);
-    }
-
-    protected function getPhpStructure($config)
-    {
-        $configFile = __DIR__.'/Configs/'.$config.'.php';
-        if (!file_exists($configFile)) {
-            return false;
-        }
-        return include $configFile;
-    }
-
     protected function title()
     {
         return __(ucfirst($this->attribute));
     }
+
     protected function body()
     {
         $rows = [];
@@ -119,14 +135,13 @@ class MultiInput
         $out = '';
         foreach ($this->config['columns'] as $column) {
             $columnName = $column['name'];
-            $value = $values && property_exists($values, $columnName) ? $values->$columnName : null;
             $out .= $this->view('element', [
-                    'element' => $this->makeElement($column, $index, $value),
+                    'element' => $this->makeElement($column, $index),
                 ]);
         }
         return $out;
     }
-    protected function makeElement($column, $index, $value)
+    protected function makeElement($column, $index)
     {
         $type = strtolower($column['type']);
         $columnName =  $this->attribute.'['.$index.']['.$column['name'].']';
