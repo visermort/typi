@@ -35,6 +35,12 @@ return [
 //                "title" => "Start time",
 //                "type" => "DateTime"
 //            ],
+            [
+                "name" => "advantage_image",
+                "title" => "Image",
+                "type" => "Image"
+            ],
+
         ]
     ],
     //other configNames

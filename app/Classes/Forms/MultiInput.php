@@ -4,6 +4,7 @@ namespace App\Classes\Forms;
 
 use TranslatableBootForm;
 use Illuminate\Support\Facades\App;
+use TypiCMS\Modules\Files\Models\File;
 
 class MultiInput
 {
@@ -11,6 +12,7 @@ class MultiInput
     protected $attribute;
     protected $value;
     protected $error;
+    protected $imageTemplate;
 
     /**
      * on admin form
@@ -45,15 +47,17 @@ class MultiInput
      */
     public static function publish($attribute, $configName, $model, $options = [])
     {
-        $self = self::getSelf($attribute, $configName, $model);
+        $self = self::getSelf($attribute, $configName, $model, true);
         if ($self->error || !$self->value) {
             return '';
         }
         $template = isset($options['template']) ? $options['template'] : 'multi-input.public.main';
         $itemTemplate = isset($options['item-template']) ? $options['item-template'] : 'multi-input.public.item';
+        $self->imageTemplate = isset($options['item-image-template']) ? $options['item-image-template'] :
+            'multi-input.public.image';
         $items = '';
         foreach ($self->value as $item) {
-            $items .= $self->view($itemTemplate, $self->translate($item), false);
+            $items .= $self->view($itemTemplate, $self->prepareShow($item), false);
         }
         return  $self->view($template, ['items' => $items], false);
     }
@@ -66,12 +70,12 @@ class MultiInput
      * @param $model
      * @return MultiInput
      */
-    public static function getSelf($attribute, $configName, $model)
+    public static function getSelf($attribute, $configName, $model, $valueIsArray = false)
     {
         $self = new self();
         $self->getConfig($configName);
         $self->attribute = $attribute;
-        $self->value = $model->$attribute ? json_decode($model->$attribute, 1) : false;
+        $self->value = $model->$attribute ? json_decode($model->$attribute, $valueIsArray) : false;
         return $self;
     }
 
@@ -89,23 +93,29 @@ class MultiInput
     }
 
     /**
-     * get translated output with dropdown values replaces
+     * get translated output with dropdown values replaces and images in fancybox
      *
      * @param $item
      * @return array
      */
-    protected function translate($item)
+    protected function prepareShow($item)
     {
         $out = [];
         $locale = App::getLocale();
         foreach ($item as $key => $column) {
-            if (in_array($locale, array_keys($column))) {
-                $out[$key] = $column[$locale];
-
-                if (strtolower($this->config['columns'][$key]['type']) == 'dropdown' &&
-                    isset($this->config['columns'][$key]['items'][$out[$key]])) {
-                    //field type dropdown - get item value
-                    $out[$key] = $this->config['columns'][$key]['items'][$out[$key]];
+            $columnType = strtolower($this->config['columns'][$key]['type']);
+            if ($columnType == 'image') {
+                $file = File::find($column);
+                if ($file) {
+                    $out[$key] = $this->view($this->imageTemplate, ['image' => $file, 'group' => $this->attribute ], false);
+                }
+            } else {
+                if (in_array($locale, array_keys($column))) {
+                    $out[$key] = $column[$locale];
+                    if ($columnType == 'dropdown' && isset($this->config['columns'][$key]['items'][$out[$key]])) {
+                        //field type dropdown - get item value
+                        $out[$key] = $this->config['columns'][$key]['items'][$out[$key]];
+                    }
                 }
             }
         }
@@ -119,9 +129,10 @@ class MultiInput
 
     protected function body()
     {
+        //dd($this->value);
         $rows = [];
         if (!$this->value || !count($this->value)) {
-            $rows[] = $this->addRow(null);
+            $rows[] = $this->addRow();
         } else {
             $index = 0;
             foreach ($this->value as $valueItem) {
@@ -135,13 +146,14 @@ class MultiInput
         $out = '';
         foreach ($this->config['columns'] as $column) {
             $columnName = $column['name'];
+            $value = $values && property_exists($values, $columnName) ? $values->$columnName : null;
             $out .= $this->view('element', [
-                    'element' => $this->makeElement($column, $index),
+                    'element' => $this->makeElement($column, $index, $value),
                 ]);
         }
         return $out;
     }
-    protected function makeElement($column, $index)
+    protected function makeElement($column, $index, $value)
     {
         $type = strtolower($column['type']);
         $columnName =  $this->attribute.'['.$index.']['.$column['name'].']';
@@ -158,12 +170,20 @@ class MultiInput
             //error ((
 //            return TranslatableBootForm::dateTimeLocal($column['title'], $columnName);
 //        }
+        if ($type == 'image') {
+            $file = null;
+            if ($value > 0) {
+                $file = File::find($value);
+            }
+            return $this->view('image', ['attribute' => $columnName, 'value' => $file]);
+        }
+
         return TranslatableBootForm::text($column['title'], $columnName);
     }
 
     protected function view($template, $params, $admin = true)
     {
-        return view(($admin ? 'multi-input.admin.' : '')  . $template, $params);
+        return view(($admin ? 'multi-input.admin.' : '') . $template, $params);
     }
 
 }

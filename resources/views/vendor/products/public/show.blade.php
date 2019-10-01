@@ -21,7 +21,7 @@
         @include('files::public._images')
         <div class="advantages">
             <h5>Advantages</h5>
-            {!! MultiInput::publish('advantages', 'advantages', $model) !!}
+            {!! MultiInput::publish('advantages', 'advantages', $model->present()) !!}
         </div>
 
     </article>
