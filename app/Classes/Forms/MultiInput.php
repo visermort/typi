@@ -34,6 +34,7 @@ class MultiInput
             'body' => $self->body(),
             'data' => $model->$attribute,
             'attribute' => $attribute,
+            'config' => $self->config,
         ]);
     }
 
@@ -137,7 +138,6 @@ class MultiInput
 
     protected function body()
     {
-        //dd($this->value);
         $rows = [];
         if (!$this->value || !count($this->value)) {
             $rows[] = $this->addRow();
@@ -145,9 +145,12 @@ class MultiInput
             $index = 0;
             foreach ($this->value as $valueItem) {
                 $rows[] = $this->addRow($valueItem, $index++);
+                if (!empty($this->config['single-row'])) {
+                    break;
+                }
             }
         }
-        return $this->view('body', ['rows' => $rows]);
+        return $this->view('body', ['rows' => $rows, 'config' => $this->config]);
     }
     protected function addRow($values = false, $index = 0)
     {
