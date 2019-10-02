@@ -13,6 +13,7 @@ class MultiInput
     protected $value;
     protected $error;
     protected $imageTemplate;
+    protected $fileTemplate;
 
     /**
      * on admin form
@@ -55,6 +56,8 @@ class MultiInput
         $itemTemplate = isset($options['item-template']) ? $options['item-template'] : 'multi-input.public.item';
         $self->imageTemplate = isset($options['item-image-template']) ? $options['item-image-template'] :
             'multi-input.public.image';
+        $self->fileTemplate = isset($options['item-file-template']) ? $options['item-file-template'] :
+            'multi-input.public.file';
         $items = '';
         foreach ($self->value as $item) {
             $items .= $self->view($itemTemplate, $self->prepareShow($item), false);
@@ -108,6 +111,11 @@ class MultiInput
                 $file = File::find($column);
                 if ($file) {
                     $out[$key] = $this->view($this->imageTemplate, ['image' => $file, 'group' => $this->attribute ], false);
+                }
+            } else if ($columnType == 'file') {
+                $file = File::find($column);
+                if ($file) {
+                    $out[$key] = $this->view($this->fileTemplate, ['file' => $file], false);
                 }
             } else {
                 if (in_array($locale, array_keys($column))) {
@@ -170,12 +178,12 @@ class MultiInput
             //error ((
 //            return TranslatableBootForm::dateTimeLocal($column['title'], $columnName);
 //        }
-        if ($type == 'image') {
+        if (in_array($type, ['image', 'file'])) {
             $file = null;
             if ($value > 0) {
                 $file = File::find($value);
             }
-            return $this->view('image', ['attribute' => $columnName, 'value' => $file]);
+            return $this->view($type, ['attribute' => $columnName, 'value' => $file]);
         }
 
         return TranslatableBootForm::text($column['title'], $columnName);

@@ -40,6 +40,11 @@ return [
                 "title" => "Image",
                 "type" => "Image"
             ],
+            [
+                "name" => "document",
+                "title" => "Document pdf",
+                "type" => "File"
+            ],
 
         ]
     ],

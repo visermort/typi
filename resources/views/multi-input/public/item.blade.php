@@ -4,4 +4,5 @@
     <div class="multiimput-item-status">{{ $status }}</div>
     <div class="multiimput-item-date">{{ $start_date }}</div>
     <div class="multiimput-item-image">{!! $advantage_image !!}</div>
+    <div class="multiimput-item-file">{!! $document !!}</div>
 </div>
