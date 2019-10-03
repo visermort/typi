@@ -1,4 +1,4 @@
-<div class="multiinput" data-value='{{ $data }}' data-attribute="{{ $attribute }}">
+<div class="@if (!empty($className)){{ $className }}@endif" data-attribute="{{ $attribute }}">
     <div class="multiinput-header">
         <label>{{ $title }}</label>
         @if (empty($config['single-row']))

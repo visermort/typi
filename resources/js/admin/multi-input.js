@@ -1,31 +1,35 @@
 (function(){
-    $('.multiinput').each(function(index, element) {
-        var data = $(element).data('value');
-        var attribute = $(element).data('attribute');
-
-        function copyValues(item, parent) {
-            for(var prop in item) {
-                if (typeof item[prop] == 'object') {
-                    copyValues(item[prop], parent+'['+prop+']');
-                } else {
-                    var name = parent+'['+prop+']';
-                    $(element).find('input[name="'+name+'"]').val(item[prop]);
-                    $(element).find('textarea[name="'+name+'"]').html(item[prop]);
-                    $(element).find('select[name="'+name+'"]').val(item[prop]);
+    function copyValues() {
+        $('.multiinput td').each(function (index, element) {
+            element = $(element);
+            var data = element.data('value');
+            var attribute = element.data('attribute');
+            if (data && attribute) {
+                var lang, currentAttribute, value;
+                if (typeof(data) == 'object') {
+                    for (lang in data) {
+                        value = data[lang];
+                        currentAttribute = attribute+'['+lang+']';
+                            element.find('input[name="' + currentAttribute + '"').val(value);
+                            element.find('textarea[name="' + currentAttribute + '"').html(value);
+                            element.find('select[name="' + currentAttribute + '"').val(value);
+                    }
                 }
             }
-        }
-        copyValues(data, attribute);
-    });
+        });
+    }
 
     $('body').on('click', '.multiinput-elem-add', function(){
         var tbody = $(this).closest('.multiinput').find('table tbody');
-        var rows = $(tbody).find('tr');
-        if (rows.length) {
-            var newRow = $(rows[0]).clone();
-            tbody.append(newRow);
-            clearRowValues(newRow);
-            orderRowNumbers(tbody)
+        if (tbody.length) {
+            tbody = tbody[0];
+            var rows = $(tbody).children('tr');
+            if (rows.length) {
+                var newRow = $(rows[0]).clone();
+                $(tbody).append(newRow);
+                clearRowValues(newRow);
+                orderRowNumbers(tbody)
+            }
 
         }
     });
@@ -39,25 +43,46 @@
     });
 
     function orderRowNumbers(tbody) {
-        var rows = $(tbody).find('tr');
-        var attribute = $(tbody).closest('.multiinput').data('attribute');
+        var rows = $(tbody).children('tr');
+        var attribute = $(tbody).closest('.multiinput').attr('data-attribute');
+
+        attribute = attribute.replace(new RegExp('\\[', 'g'), '\\[').replace(new RegExp('\\]', 'g'), '\\]');
         $(rows).each(function(index, row) {
-            var inputs = $(row).find('input,select,textarea');
-            $(inputs).each(function(i, input) {
+            var pattern = '^'+attribute+'\\[\\d+\\]';
+            var replacement = attribute+'['+index+']';
+
+            $(row).find('input,select,textarea').each(function(i, input) {
                 var name = $(input).attr('name');
-                var pattern = '^'+attribute+'\\[\\d+\\]';
-                var replacement = attribute+'['+index+']';
-                var newName = name.replace(new RegExp(pattern), replacement);
+                var newName = name.replace(new RegExp(pattern), replacement).replace(new RegExp('\\\\', 'g'), '');
+
                 $(input).attr('name', newName);
                 $(input).attr('id', newName);
                 $(input).siblings('label').attr('for', newName);
+            });
+            $(row).find('td').each(function(i, td) {
+                var dataAttr = $(td).attr('data-attribute');
+                if (dataAttr) {
+                    var newAttr = dataAttr.replace(new RegExp(pattern), replacement).replace(new RegExp('\\\\', 'g'), '');
+                    $(td).attr('data-attribute', newAttr);
+                }
+                $(td).children('.multiinput').each(function(i, mi) {
+                    dataAttr= $(mi).attr('data-attribute');
+                    if (dataAttr) {
+                        var newAttr = dataAttr.replace(new RegExp(pattern), replacement).replace(new RegExp('\\\\', 'g'), '');
+                        $(mi).attr('data-attribute', newAttr);
+                    }
+                });
             });
         });
     }
     function clearRowValues(row)
     {
         $(row).find('input').val('');
+        $(row).find('select').val('');
         $(row).find('textarea').html('');
+        $(row).find('.multiinput tbody tr:not(:first)').remove();
     }
+
+    copyValues();
 
 })();

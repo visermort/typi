@@ -4,6 +4,7 @@ return [
     //configName
     'advantages' => [
         "single-row" => false,
+        "title" => "Advantages",
         "columns" => [
             [
                 "name" => "title",
@@ -44,6 +45,23 @@ return [
                 "name" => "document",
                 "title" => "Document pdf",
                 "type" => "File"
+            ],
+            [
+                "name" => 'features',
+                'title'=> 'Features',
+                'type' => 'MultiInput',
+                'columns' => [
+                    [
+                        "name" => "feature_title",
+                        "title" => "Title",
+                        "type" => "Varchar"
+                    ],
+                    [
+                        "name" => "feature_image",
+                        "title" => "Image",
+                        "type" => "Image"
+                    ],
+                ]
             ],
 
         ]
