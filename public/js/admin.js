@@ -53971,7 +53971,7 @@ var map = {
 	"./enable-selectize.js": "./resources/js/admin/enable-selectize.js",
 	"./jquery.slug.js": "./resources/js/admin/jquery.slug.js",
 	"./lang-switcher-active.js": "./resources/js/admin/lang-switcher-active.js",
-	"./multi-input.js": "./resources/js/admin/multi-input.js",
+	"./multiinput.js": "./resources/js/admin/multiinput.js",
 	"./offcanvas-admin.js": "./resources/js/admin/offcanvas-admin.js",
 	"./on-drag-file.js": "./resources/js/admin/on-drag-file.js",
 	"./preview-window.js": "./resources/js/admin/preview-window.js",
@@ -54840,10 +54840,10 @@ $(function () {
 
 /***/ }),
 
-/***/ "./resources/js/admin/multi-input.js":
-/*!*******************************************!*\
-  !*** ./resources/js/admin/multi-input.js ***!
-  \*******************************************/
+/***/ "./resources/js/admin/multiinput.js":
+/*!******************************************!*\
+  !*** ./resources/js/admin/multiinput.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 

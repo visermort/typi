@@ -19,6 +19,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/TypiCMS/Laravel-Sidebar.git"
+        },
+        {
+            "type": "path",
+            "url": "packages/visermort/typimultiinput"
         }
     ],
     "require": {
@@ -56,7 +60,8 @@
         "typicms/tags": "~7.0",
         "typicms/translations": "~7.0",
         "typicms/users": "~7.0",
-        "typidesign/laravel-artisan-translations": "~1.0.0"
+        "typidesign/laravel-artisan-translations": "~1.0.0",
+        "visermort/typimultiinput": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
@@ -79,7 +84,8 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "TypiCMS\\Modules\\": "Modules/"
+            "TypiCMS\\Modules\\": "Modules/",
+            "visermort\\typimultiinput\\": "packages/visermort/typimultiinput/src"
         },
         "classmap": [
             "database/seeds",

@@ -214,6 +214,9 @@ return [
          */
         TypiCMS\Modules\Pages\Providers\ModuleProvider::class,
 
+        visermort\typimultiinput\MultiInputProvider::class,
+
+
     ],
 
     /*
@@ -272,7 +275,9 @@ return [
         'TranslatableBootForm' => TypiCMS\LaravelTranslatableBootForms\Facades\TranslatableBootForm::class,
 
         'CustomMenu' => App\Classes\Menu\Menu::class,
-        'MultiInput' => App\Classes\Forms\MultiInput::class,
+
+        'MultiInput' => visermort\typimultiinput\MultiInput::class,
+
 
     ],
 
