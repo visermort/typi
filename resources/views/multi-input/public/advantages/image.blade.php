@@ -4,5 +4,5 @@
    data-fancybox="{{ $group ? : 'group' }}"
    data-options='{ "buttons": ["close"], "infobar": false }'
 >
-    <img class="multiimput-item-image-linki-image" src="{!! $image->present()->image(100, 100) !!}" alt="{{ $image->alt_attribute }}">
+    <img class="multiimput-item-image-link-image" src="{!! $image->present()->image(100, 100) !!}" alt="{{ $image->alt_attribute }}">
 </a>

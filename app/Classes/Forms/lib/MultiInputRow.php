@@ -37,10 +37,12 @@ class MultiInputRow
             }
 
             $this->columns[] = $cell;
+            $property = $column['name'];
+            $this->{$property} = $cell;//as property
         }
     }
 
-    public function view()
+    public function render()
     {
         $templates = Multiinput::getTemplates();
         $out = '';

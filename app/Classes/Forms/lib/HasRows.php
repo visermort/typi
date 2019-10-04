@@ -45,7 +45,7 @@ trait HasRows
         $templates = Multiinput::getTemplates();
         $rows = [];
         foreach ($this->rows as $row) {
-            $rows[] = $row->view();
+            $rows[] = $row->render();
         }
         $body = view($templates['body'], ['rows' => $rows]);
         return view($templates['main'], [

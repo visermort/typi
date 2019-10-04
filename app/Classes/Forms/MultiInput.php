@@ -2,7 +2,6 @@
 
 namespace App\Classes\Forms;
 
-use TranslatableBootForm;
 use Illuminate\Support\Facades\App;
 use TypiCMS\Modules\Files\Models\File;
 use App\Classes\Forms\lib\HasRows;
@@ -26,25 +25,11 @@ class MultiInput
         'public' => [
             'directory' => 'multi-input.public.',
             'main' => 'main',
-            'body' => 'body',
-            'element' => 'element',
+            'item' => 'item',
             'file' => 'file',
             'image' => 'image',
         ],
     ];
-
-
-    public static function getTemplates()
-    {
-        $key = self::$admin ? 'admin' : 'public';
-        $templates = self::$templates[$key];
-        foreach ($templates as $key => &$template) {
-            if ($key != 'directory') {
-                $template = $templates['directory'] . $template;
-            }
-        }
-        return  $templates;
-    }
 
     /**
      * on admin form
@@ -75,22 +60,54 @@ class MultiInput
      */
     public static function publish($attribute, $configName, $model, $options = [])
     {
+
         $self = self::make($attribute, $configName, $model);
         if ($self->errors || !$self->value) {
             return '';
         }
-        $template = isset($options['template']) ? $options['template'] : 'multi-input.public.main';
-        $itemTemplate = isset($options['item-template']) ? $options['item-template'] : 'multi-input.public.item';
-        $self->imageTemplate = isset($options['item-image-template']) ? $options['item-image-template'] :
-            'multi-input.public.image';
-        $self->fileTemplate = isset($options['item-file-template']) ? $options['item-file-template'] :
-            'multi-input.public.file';
-        $items = '';
-        foreach ($self->value as $item) {
-            $items .= $self->view($itemTemplate, $self->prepareShow($item), false);
+        self::$admin = false;
+        self::$templates['public']['directory'] =
+            self::$templates['public']['directory'] . $attribute . '.';//default directory  multi-input.public.<attribute>.
+        if (!empty($options['templates'])) {
+            foreach ($options['templates'] as $key => $value) {
+                self::$templates['public'][$key] = $value;
+            }
         }
-        return  $self->view($template, ['items' => $items], false);
+        if (isset($options['title'])) {
+            $self->title = $options['title'];
+        }
+        if (isset($options['class-name'])) {
+            $self->className = $options['class-name'];
+        }
+        return $self->viewPublic();
     }
+
+    public function viewPublic()
+    {
+        $templates = self::getTemplates();
+        $rows = '';
+        foreach ($this->rows as $row) {
+            $rows .= view($templates['item'], ['row' => $row]);
+        }
+        return view($templates['main'], [
+            'title' => $this->title,
+            'rows' => $rows,
+            'className' => $this->className,
+        ]);
+    }
+
+    public static function getTemplates()
+    {
+        $key = self::$admin ? 'admin' : 'public';
+        $templates = self::$templates[$key];
+        foreach ($templates as $key => &$template) {
+            if ($key != 'directory') {
+                $template = $templates['directory'] . $template;
+            }
+        }
+        return  $templates;
+    }
+
 
     /**
      * create self instance
@@ -142,40 +159,4 @@ class MultiInput
         }
         return $out;
     }
-
-    /**
-     * get translated output with dropdown values replaces and images in fancybox
-     *
-     * @param $item
-     * @return array
-     */
-    protected function prepareShow($item)
-    {
-        $out = [];
-        $locale = App::getLocale();
-        foreach ($item as $key => $column) {
-            $columnType = strtolower($this->config['columns'][$key]['type']);
-            if ($columnType == 'image') {
-                $file = File::find($column);
-                if ($file) {
-                    $out[$key] = $this->view($this->imageTemplate, ['image' => $file, 'group' => $this->attribute ], false);
-                }
-            } else if ($columnType == 'file') {
-                $file = File::find($column);
-                if ($file) {
-                    $out[$key] = $this->view($this->fileTemplate, ['file' => $file], false);
-                }
-            } else {
-                if (in_array($locale, array_keys($column))) {
-                    $out[$key] = $column[$locale];
-                    if ($columnType == 'dropdown' && isset($this->config['columns'][$key]['items'][$out[$key]])) {
-                        //field type dropdown - get item value
-                        $out[$key] = $this->config['columns'][$key]['items'][$out[$key]];
-                    }
-                }
-            }
-        }
-        return $out;
-    }
-
 }
