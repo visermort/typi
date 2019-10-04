@@ -14128,6 +14128,8 @@ button.swiper-pagination-bullet {
 
 .multiinput-item {
   display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .skip-to-content {

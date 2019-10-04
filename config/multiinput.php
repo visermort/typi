@@ -1,5 +1,15 @@
 <?php
 
+define('MULTIINPUT_STATUS_WAITING', 0);
+define('MULTIINPUT_STATUS_ACTIVE', 1);
+define('MULTIINPUT_STATUS_DISABLE', 2);
+
+$activeLabels = [
+    MULTIINPUT_STATUS_WAITING => "Waiting",
+    MULTIINPUT_STATUS_ACTIVE => "Active",
+    MULTIINPUT_STATUS_DISABLE => "Disable",
+];
+
 return [
     //configName
     'advantages' => [
@@ -20,11 +30,7 @@ return [
                 "name" => "status",
                 "title" => "Status",
                 "type" => "Dropdown",
-                "items" => [
-                    "0" => "Waiting",
-                    "1" => "Active",
-                    "2" => "Disable"
-                ]
+                "items" => $activeLabels,
             ],
             [
                 "name" => "start_date",
