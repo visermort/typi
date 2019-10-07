@@ -19,10 +19,6 @@
         {
             "type": "vcs",
             "url": "https://github.com/TypiCMS/Laravel-Sidebar.git"
-        },
-        {
-            "type": "path",
-            "url": "packages/visermort/typimultiinput"
         }
     ],
     "require": {
@@ -84,8 +80,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "TypiCMS\\Modules\\": "Modules/",
-            "visermort\\typimultiinput\\": "packages/visermort/typimultiinput/src"
+            "TypiCMS\\Modules\\": "Modules/"
         },
         "classmap": [
             "database/seeds",
