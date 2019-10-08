@@ -57,7 +57,7 @@
         "typicms/translations": "~7.0",
         "typicms/users": "~7.0",
         "typidesign/laravel-artisan-translations": "~1.0.0",
-        "visermort/typimultiinput": "*"
+        "visermort/typimultiinput": "^0.1.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
