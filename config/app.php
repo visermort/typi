@@ -193,6 +193,8 @@ return [
          * Service provider for typiCMS Scaffold module
          */
         TypiCMS\Modules\Products\Providers\ModuleProvider::class,
+
+        TypiCMS\Modules\Projects\Providers\ModuleProvider::class,
         /*
          * TypiCMS Core Service Provider...
          */
