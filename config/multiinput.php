@@ -15,16 +15,22 @@ return [
     'advantages' => [
         "single-row" => false,
         "title" => "Advantages",
+        "order" => [
+            "sort" => "ASC",
+            "title" => "ASC"
+        ],
         "columns" => [
             [
                 "name" => "title",
                 "title" => "Title",
-                "type" => "Varchar"
+                "type" => "Varchar",
+                "translatable" => true
             ],
             [
                 "name" => "description",
                 "title" => "Description",
-                "type" => "Text"
+                "type" => "Text",
+                "translatable" => true
             ],
             [
                 "name" => "status",
@@ -35,23 +41,37 @@ return [
             [
                 "name" => "start_date",
                 "title" => "Start date",
-                "type" => "Date"
+                "type" => "Date",
+                "translatable" => true
             ],
 //            [
-//                "name" => "start_datetime",
-//                "title" => "Start time",
+//                "name" => "end_date",
+//                "title" => "End date",
 //                "type" => "DateTime"
 //            ],
             [
                 "name" => "advantage_image",
                 "title" => "Image",
-                "type" => "Image"
+                "type" => "Image",
+                "translatable" => true
             ],
             [
                 "name" => "document",
                 "title" => "Document pdf",
-                "type" => "File"
+                "type" => "File",
+                "translatable" => true
             ],
+            [
+                "name" => "sort",
+                "title" => "Sort Order",
+                "type" => "Number"
+            ],
+//            [
+//                "name" => "viewed",
+//                "title" => "Viewed",
+//                "type" => "Boolean",
+//                "translatable" => true
+//            ],
             [
                 "name" => 'features',
                 'title'=> 'Features',
@@ -59,15 +79,17 @@ return [
                 'columns' => [
                     [
                         "name" => "feature_title",
-                        "title" => "Title",
-                        "type" => "Varchar"
+                        "title" => "Feature Title",
+                        "type" => "Varchar",
+                        "translatable" => true
                     ],
                     [
                         "name" => "feature_image",
-                        "title" => "Image",
+                        "title" => "Feature Image",
                         "type" => "Image"
                     ],
-                ]
+                ],
+                "order" => ["feature_title" => "ASC"],
             ],
 
         ]

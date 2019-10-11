@@ -14132,6 +14132,12 @@ button.swiper-pagination-bullet {
   justify-content: space-between;
 }
 
+.multiinput-header {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
 .skip-to-content {
   position: absolute;
   width: 1px;

@@ -24,5 +24,6 @@
     "Are you sure you want to delete # items?": "Are you sure you want to delete {count} item? | Are you sure you want to delete {count} items?",
     "Are you sure you want to delete “{title}”?": "Are you sure you want to delete “{title}”?",
     "Are you sure you want to publish # items?": "Are you sure you want to publish 1 item? | Are you sure you want to publish {count} items?",
-    "Are you sure you want to unpublish # items?": "Are you sure you want to unpublish 1 item? | Are you sure you want to unpublish {count} items?"
+    "Are you sure you want to unpublish # items?": "Are you sure you want to unpublish 1 item? | Are you sure you want to unpublish {count} items?",
+    "Save document and continue!": "Сохраните документ перед продолжением!"
 }

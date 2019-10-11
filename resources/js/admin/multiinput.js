@@ -1,23 +1,19 @@
 (function(){
-    function copyValues() {
-        $('.multiinput td').each(function (index, element) {
-            element = $(element);
-            var data = element.data('value');
-            var attribute = element.data('attribute');
-            if (data && attribute) {
-                var lang, currentAttribute, value;
-                if (typeof(data) == 'object') {
-                    for (lang in data) {
-                        value = data[lang];
-                        currentAttribute = attribute+'['+lang+']';
-                            element.find('input[name="' + currentAttribute + '"').val(value);
-                            element.find('textarea[name="' + currentAttribute + '"').html(value);
-                            element.find('select[name="' + currentAttribute + '"').val(value);
-                    }
-                }
-            }
-        });
-    }
+
+    $('body').on('click', '.btn-lang-js', function() {
+
+        var locale = $(this).data('locale');
+        if (locale == 'all') {
+            $('.multiinput .form-group').show();
+        } else {
+            $('.multiinput .form-group')
+                .has('[data-translatable="1"]')
+                .hide()
+                .has('[data-language="' + locale + '"]')
+                .show();
+        }
+    });
+
 
     $('body').on('click', '.multiinput-elem-add', function(){
         var tbody = $(this).closest('.multiinput').find('table tbody');
@@ -36,7 +32,7 @@
 
     $('body').on('click', '.multiinput-elem-remove', function() {
         var tbody = $(this).closest('tbody');
-        if ($(tbody).find('tr').length > 1) {
+        if ($(tbody).children('tr').length > 1) {
             $(this).closest('tr').remove();
             orderRowNumbers(tbody);
         }
@@ -81,8 +77,7 @@
         $(row).find('select').val('');
         $(row).find('textarea').html('');
         $(row).find('.multiinput tbody tr:not(:first)').remove();
+        $(row).find('.filemanager-item-trans').addClass('new-item')
     }
-
-    copyValues();
 
 })();

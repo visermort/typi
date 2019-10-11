@@ -4378,6 +4378,135 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MultiInputFileField.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MultiInputFileField.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    field: {
+      type: String,
+      required: true
+    },
+    label: {
+      type: String
+    },
+    language: {
+      type: String
+    },
+    translatable: {
+      type: String
+    },
+    newitemmessage: {
+      type: String
+    },
+    type: {
+      type: String,
+      required: true,
+      validator: function validator(value) {
+        // The value must match one of these strings
+        return ['image', 'document'].indexOf(value) !== -1;
+      }
+    },
+    data: {
+      type: String,
+      required: true
+    }
+  },
+  data: function data() {
+    return {
+      loading: false,
+      choosingFile: false,
+      id: null,
+      name: null,
+      src: null,
+      alt: null
+    };
+  },
+  created: function created() {
+    if (this.data !== '') {
+      this.setData(JSON.parse(this.data));
+    }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.$root.$on('fileAdded', function (file) {
+      if (_this.choosingFile === true) {
+        _this.setData(file);
+      }
+
+      _this.choosingFile = false;
+    });
+  },
+  methods: {
+    setData: function setData(file) {
+      this.id = file.id;
+      this.name = file.name;
+      this.src = file.thumb_sm;
+      this.alt = file.alt_attribute_translated;
+    },
+    unsetData: function unsetData() {
+      this.id = null;
+      this.name = null;
+      this.src = null;
+      this.alt = null;
+    },
+    openFilepicker: function openFilepicker() {
+      this.choosingFile = true;
+      var options = {
+        open: true,
+        multiple: false,
+        overlay: true,
+        single: true,
+        modal: true
+      };
+      this.$root.$emit('openFilepicker', options);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Reports.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Reports.vue?vue&type=script&lang=js& ***!
@@ -38451,6 +38580,120 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MultiInputFileField.vue?vue&type=template&id=2d93ed32&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MultiInputFileField.vue?vue&type=template&id=2d93ed32& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "mb-4 form-group" }, [
+    _c("label", { attrs: { for: _vm.field } }, [
+      _vm.label
+        ? _c("span", [_vm._v(" " + _vm._s(_vm.label) + " ")])
+        : _c("span", [
+            _vm._v(
+              " " +
+                _vm._s(
+                  _vm.type === "document" ? _vm.$t("Document") : _vm.$t("Image")
+                ) +
+                " "
+            )
+          ])
+    ]),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        { name: "model", rawName: "v-model", value: _vm.id, expression: "id" }
+      ],
+      attrs: {
+        type: "hidden",
+        name: _vm.field,
+        id: _vm.field,
+        rel: _vm.field,
+        "data-language": _vm.language,
+        "data-translatable": _vm.translatable
+      },
+      domProps: { value: _vm.id },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.id = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("div", { staticClass: "filemanager-item-trans" }, [
+      _vm.id !== null
+        ? _c("div", { staticClass: "filemanager-item-removable" }, [
+            _c(
+              "button",
+              {
+                staticClass: "filemanager-item-removable-button",
+                attrs: { type: "button" },
+                on: { click: _vm.unsetData }
+              },
+              [_c("span", { staticClass: "fa fa-times" })]
+            ),
+            _vm._v(" "),
+            _vm.type === "document"
+              ? _c("div", [
+                  _c("span", { staticClass: "fa fa-fw fa-2x fa-file-o" }),
+                  _vm._v(" " + _vm._s(_vm.name))
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.type === "image"
+              ? _c("div", { staticClass: "filemanager-item-image-wrapper" }, [
+                  _c("img", {
+                    staticClass: "filemanager-item-image",
+                    attrs: { src: _vm.src, alt: _vm.alt }
+                  })
+                ])
+              : _vm._e()
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.id === null
+        ? _c("div", { staticClass: "filemanager-item-addbutton" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-sm btn-secondary",
+                attrs: { type: "button" },
+                on: { click: _vm.openFilepicker }
+              },
+              [
+                _c("span", { staticClass: "fa fa-plus fa-fw text-white-50" }),
+                _vm._v(" " + _vm._s(_vm.$t("Add")) + "\n            ")
+              ]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "filemanager-item-message" }, [
+        _c("span", [_vm._v(_vm._s(_vm.newitemmessage))])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Reports.vue?vue&type=template&id=6c52f8b8&":
 /*!**********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Reports.vue?vue&type=template&id=6c52f8b8& ***!
@@ -54021,18 +54264,21 @@ var _lang_fr_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpac
 var _lang_en_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lang/en.json */ "./resources/lang/en.json", 1);
 /* harmony import */ var _lang_es_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../lang/es.json */ "./resources/lang/es.json");
 var _lang_es_json__WEBPACK_IMPORTED_MODULE_5___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lang/es.json */ "./resources/lang/es.json", 1);
-/* harmony import */ var _filters_Date_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./filters/Date.js */ "./resources/js/filters/Date.js");
-/* harmony import */ var _components_ItemListColumnHeader_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/ItemListColumnHeader.vue */ "./resources/js/components/ItemListColumnHeader.vue");
-/* harmony import */ var _components_ItemList_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/ItemList.vue */ "./resources/js/components/ItemList.vue");
-/* harmony import */ var _components_ItemListTree_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/ItemListTree.vue */ "./resources/js/components/ItemListTree.vue");
-/* harmony import */ var _components_ItemListStatusButton_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/ItemListStatusButton.vue */ "./resources/js/components/ItemListStatusButton.vue");
-/* harmony import */ var _components_ItemListCheckbox_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/ItemListCheckbox.vue */ "./resources/js/components/ItemListCheckbox.vue");
-/* harmony import */ var _components_ItemListPositionInput_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/ItemListPositionInput.vue */ "./resources/js/components/ItemListPositionInput.vue");
-/* harmony import */ var _components_History_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/History.vue */ "./resources/js/components/History.vue");
-/* harmony import */ var _components_Reports_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Reports.vue */ "./resources/js/components/Reports.vue");
-/* harmony import */ var _components_Filepicker_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Filepicker.vue */ "./resources/js/components/Filepicker.vue");
-/* harmony import */ var _components_Files_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Files.vue */ "./resources/js/components/Files.vue");
-/* harmony import */ var _components_FileField_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/FileField.vue */ "./resources/js/components/FileField.vue");
+/* harmony import */ var _lang_ru_json__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../lang/ru.json */ "./resources/lang/ru.json");
+var _lang_ru_json__WEBPACK_IMPORTED_MODULE_6___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lang/ru.json */ "./resources/lang/ru.json", 1);
+/* harmony import */ var _filters_Date_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./filters/Date.js */ "./resources/js/filters/Date.js");
+/* harmony import */ var _components_ItemListColumnHeader_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/ItemListColumnHeader.vue */ "./resources/js/components/ItemListColumnHeader.vue");
+/* harmony import */ var _components_ItemList_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/ItemList.vue */ "./resources/js/components/ItemList.vue");
+/* harmony import */ var _components_ItemListTree_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/ItemListTree.vue */ "./resources/js/components/ItemListTree.vue");
+/* harmony import */ var _components_ItemListStatusButton_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/ItemListStatusButton.vue */ "./resources/js/components/ItemListStatusButton.vue");
+/* harmony import */ var _components_ItemListCheckbox_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/ItemListCheckbox.vue */ "./resources/js/components/ItemListCheckbox.vue");
+/* harmony import */ var _components_ItemListPositionInput_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/ItemListPositionInput.vue */ "./resources/js/components/ItemListPositionInput.vue");
+/* harmony import */ var _components_History_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/History.vue */ "./resources/js/components/History.vue");
+/* harmony import */ var _components_Reports_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Reports.vue */ "./resources/js/components/Reports.vue");
+/* harmony import */ var _components_Filepicker_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Filepicker.vue */ "./resources/js/components/Filepicker.vue");
+/* harmony import */ var _components_Files_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Files.vue */ "./resources/js/components/Files.vue");
+/* harmony import */ var _components_FileField_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/FileField.vue */ "./resources/js/components/FileField.vue");
+/* harmony import */ var _components_MultiInputFileField_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/MultiInputFileField.vue */ "./resources/js/components/MultiInputFileField.vue");
 // window._ = require('lodash');
 window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
 /**
@@ -54083,6 +54329,7 @@ window.Vue = vue__WEBPACK_IMPORTED_MODULE_1___default.a;
 
 
 
+
 var messages = {
   fr: _lang_fr_json__WEBPACK_IMPORTED_MODULE_3__,
   en: _lang_en_json__WEBPACK_IMPORTED_MODULE_4__,
@@ -54097,7 +54344,7 @@ var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_2__["default"]({
  */
 
 
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.filter('date', _filters_Date_js__WEBPACK_IMPORTED_MODULE_6__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.filter('date', _filters_Date_js__WEBPACK_IMPORTED_MODULE_7__["default"]);
 /**
  * Lists
  */
@@ -54125,21 +54372,23 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.filter('date', _filters_Date_js__WEBP
 
 
 
+
 window.EventBus = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({});
 new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
   i18n: i18n,
   components: {
-    ItemListColumnHeader: _components_ItemListColumnHeader_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
-    ItemList: _components_ItemList_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
-    ItemListTree: _components_ItemListTree_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
-    ItemListStatusButton: _components_ItemListStatusButton_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
-    ItemListCheckbox: _components_ItemListCheckbox_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
-    ItemListPositionInput: _components_ItemListPositionInput_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
-    Filepicker: _components_Filepicker_vue__WEBPACK_IMPORTED_MODULE_15__["default"],
-    Files: _components_Files_vue__WEBPACK_IMPORTED_MODULE_16__["default"],
-    FileField: _components_FileField_vue__WEBPACK_IMPORTED_MODULE_17__["default"],
-    History: _components_History_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
-    Reports: _components_Reports_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
+    ItemListColumnHeader: _components_ItemListColumnHeader_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
+    ItemList: _components_ItemList_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+    ItemListTree: _components_ItemListTree_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    ItemListStatusButton: _components_ItemListStatusButton_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+    ItemListCheckbox: _components_ItemListCheckbox_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
+    ItemListPositionInput: _components_ItemListPositionInput_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
+    Filepicker: _components_Filepicker_vue__WEBPACK_IMPORTED_MODULE_16__["default"],
+    Files: _components_Files_vue__WEBPACK_IMPORTED_MODULE_17__["default"],
+    FileField: _components_FileField_vue__WEBPACK_IMPORTED_MODULE_18__["default"],
+    MultiInputFileField: _components_MultiInputFileField_vue__WEBPACK_IMPORTED_MODULE_19__["default"],
+    History: _components_History_vue__WEBPACK_IMPORTED_MODULE_14__["default"],
+    Reports: _components_Reports_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
   }
 }).$mount('#app');
 /**
@@ -54847,31 +55096,16 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 (function () {
-  function copyValues() {
-    $('.multiinput td').each(function (index, element) {
-      element = $(element);
-      var data = element.data('value');
-      var attribute = element.data('attribute');
+  $('body').on('click', '.btn-lang-js', function () {
+    var locale = $(this).data('locale');
 
-      if (data && attribute) {
-        var lang, currentAttribute, value;
-
-        if (_typeof(data) == 'object') {
-          for (lang in data) {
-            value = data[lang];
-            currentAttribute = attribute + '[' + lang + ']';
-            element.find('input[name="' + currentAttribute + '"').val(value);
-            element.find('textarea[name="' + currentAttribute + '"').html(value);
-            element.find('select[name="' + currentAttribute + '"').val(value);
-          }
-        }
-      }
-    });
-  }
-
+    if (locale == 'all') {
+      $('.multiinput .form-group').show();
+    } else {
+      $('.multiinput .form-group').has('[data-translatable="1"]').hide().has('[data-language="' + locale + '"]').show();
+    }
+  });
   $('body').on('click', '.multiinput-elem-add', function () {
     var tbody = $(this).closest('.multiinput').find('table tbody');
 
@@ -54890,7 +55124,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   $('body').on('click', '.multiinput-elem-remove', function () {
     var tbody = $(this).closest('tbody');
 
-    if ($(tbody).find('tr').length > 1) {
+    if ($(tbody).children('tr').length > 1) {
       $(this).closest('tr').remove();
       orderRowNumbers(tbody);
     }
@@ -54935,9 +55169,8 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     $(row).find('select').val('');
     $(row).find('textarea').html('');
     $(row).find('.multiinput tbody tr:not(:first)').remove();
+    $(row).find('.filemanager-item-trans').addClass('new-item');
   }
-
-  copyValues();
 })();
 
 /***/ }),
@@ -56159,6 +56392,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/MultiInputFileField.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/MultiInputFileField.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MultiInputFileField_vue_vue_type_template_id_2d93ed32___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MultiInputFileField.vue?vue&type=template&id=2d93ed32& */ "./resources/js/components/MultiInputFileField.vue?vue&type=template&id=2d93ed32&");
+/* harmony import */ var _MultiInputFileField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MultiInputFileField.vue?vue&type=script&lang=js& */ "./resources/js/components/MultiInputFileField.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MultiInputFileField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MultiInputFileField_vue_vue_type_template_id_2d93ed32___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MultiInputFileField_vue_vue_type_template_id_2d93ed32___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/MultiInputFileField.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/MultiInputFileField.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/MultiInputFileField.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MultiInputFileField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./MultiInputFileField.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MultiInputFileField.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MultiInputFileField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/MultiInputFileField.vue?vue&type=template&id=2d93ed32&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/MultiInputFileField.vue?vue&type=template&id=2d93ed32& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MultiInputFileField_vue_vue_type_template_id_2d93ed32___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./MultiInputFileField.vue?vue&type=template&id=2d93ed32& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MultiInputFileField.vue?vue&type=template&id=2d93ed32&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MultiInputFileField_vue_vue_type_template_id_2d93ed32___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MultiInputFileField_vue_vue_type_template_id_2d93ed32___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Reports.vue":
 /*!*********************************************!*\
   !*** ./resources/js/components/Reports.vue ***!
@@ -56298,6 +56600,17 @@ into your web browser: [:actionURL](:actionURL), Image, Images, Impossible to de
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"# blocks\":\"Aucun bloc de contenu | 1 bloc de contenu | {count} blocs de contenu\",\"# categories\":\"Aucune catégorie | 1 catégorie | {count} catégories\",\"# contacts\":\"Aucun contact | 1 contact | {count} contacts\",\"# events\":\"Aucun événement | 1 événement | {count} événements\",\"# files could not be moved.\":\"Aucun fichier n’a pu être déplacé. | 1 fichier n’a pas pu être déplacé. | {count} fichiers n’ont pas pu être déplacés.\",\"# files moved.\":\"Aucun fichier déplacé. | 1 fichier déplacé. | {count} fichiers déplacés.\",\"# items deleted\":\"1 élément supprimé | {count} éléments supprimés\",\"# items published\":\"1 élément publié | {count} éléments publiés\",\"# items selected\":\"Aucun élément sélectionné | 1 élément sélectionné | {count} éléments sélectionnés\",\"# items unpublished\":\"1 élément dépublié | {count} éléments dépubliés\",\"# menus\":\"Aucun menu | 1 menu | {count} menus\",\"# news\":\"Aucune actualité | 1 actualité | {count} actualités\",\"# pages\":\"Aucune page | 1 page | {count} pages\",\"# partners\":\"Aucun partenaire | 1 partenaire | {count} partenaires\",\"# places\":\"Aucune adresse | 1 adresse | {count} adresses\",\"# products\":\"Aucun product|1 product|{count} products\",\"# projects\":\"Aucun projet | 1 projet | {count} projets\",\"# roles\":\"Aucun rôle | 1 rôle | {count} rôles\",\"# sections\":\"Aucune section | 1 section | {count} sections\",\"# slides\":\"Aucun slide | 1 slide | {count} slides\",\"# tags\":\"Aucun tag | 1 tag | {count} tags\",\"# translations\":\"Aucune traduction | 1 traduction | {count} traductions\",\"# users\":\"Aucun utilisateur | 1 utilisateur | {count} utilisateurs\",\"A fresh verification link has been sent to your email address.\":\"Un nouveau lien de vérification a été envoyé à votre adresse email.\",\"A non-empty folder cannot be deleted.\":\"Un dossier non-vide ne peut pas être supprimé.\",\"A page containing subpages cannot be linked to a module\":\"Une page ayant des sous-pages ne peut pas être liée à un module.\",\"Access dashboard\":\"Accéder au tableau de bord\",\"Action\":\"Action\",\"Activate my account\":\"Activer mon compte\",\"Activated\":\"Activé\",\"Active locale\":\"Langue active\",\"Active tab\":\"Onglet actif\",\"Add\":\"Ajouter\",\"Add files\":\"Ajouter des fichiers\",\"Add selected file\":\"Ajouter le fichier sélectionné\",\"Add selected files\":\"Ajouter les fichiers sélectionnés\",\"Add to menu\":\"Ajouter au menu\",\"address\":\"adresse\",\"Address\":\"Adresse\",\"Administration Language\":\"Langue de l’interface d’administration\",\"Administration Welcome Message\":\"Message d’accueil de l’interface d’administration\",\"Age\":\"Âge\",\"All\":\"Tous\",\"All languages\":\"Toutes les langues\",\"All rights reserved.\":\"Tous droits réservés.\",\"Alt attribute\":\"Texte alternatif\",\"An error occurred with the data fetch.\":\"Une erreur s’est produite lors du chargement des données.\",\"and get access to all the content of our website.\":\"et accédez à tout le contenu de notre site.\",\"Are you sure you want to delete # items?\":\"Voulez-vous supprimer {count} élément ? | Voulez-vous supprimer {count} éléments ?\",\"Are you sure you want to delete “{title}”?\":\"Êtes-vous certain de vouloir supprimer « {title} » ?\",\"Are you sure you want to publish # items?\":\"Voulez-vous publier 1 élément ? | Voulez-vous publier {count} éléments ?\",\"Are you sure you want to unpublish # items?\":\"Voulez-vous dépublier 1 élément ? | Voulez-vous dépublier {count} éléments ?\",\"Authenticate to view website\":\"Se connecter pour voir le site\",\"Available\":\"Disponible\",\"Back\":\"Retour\",\"Back to products list\":\"Retour à la liste des products\",\"Back to the website\":\"Retour au site web\",\"Back-office\":\"Administration\",\"Become a member\":\"Devenez membre\",\"Before proceeding, please check your email for a verification link.\":\"Avant de continuer, veuillez vérifier votre courrier électronique pour un lien de vérification.\",\"Blocks\":\"Blocs de contenu\",\"Body\":\"Corps\",\"Cache\":\"Cache\",\"Cache cleared\":\"Le cache a été vidé\",\"Cancel\":\"Annuler\",\"Categories\":\"Catégories\",\"Category\":\"Catégorie\",\"Change Password\":\"Modifier le mot de passe\",\"Change settings\":\"Changer la configuration\",\"City\":\"Ville\",\"Class\":\"Class\",\"Clear\":\"Vider l’historique\",\"Clear cache\":\"Vider le cache\",\"click here to request another\":\"cliquer ici pour faire une autre demande\",\"Comments enabled\":\"Activer les commentaires\",\"Company\":\"Société\",\"Confirm Password\":\"Confirmez le mot de passe\",\"Contact information\":\"Coordonnées\",\"Contacts\":\"Contacts\",\"Content\":\"Contenu\",\"Content blocks\":\"Blocs de contenu\",\"Copied to the clipboard\":\"Copié dans le presse-papier\",\"Copy\":\"Copier\",\"Country\":\"Pays\",\"Create\":\"Créer\",\"Created at\":\"Créé le\",\"Css\":\"Code CSS\",\"Currency\":\"Moneda\",\"Dashboard\":\"Tableau de bord\",\"Date\":\"Date\",\"Day\":\"Jour\",\"DDMMYYYY\":\"JJ.MM.AAAA\",\"DDMMYYYY HHMM\":\"JJ.MM.AAAA HH:MM\",\"Delete\":\"Supprimer\",\"Description\":\"Description\",\"Deselect all\":\"Tout désélectionner\",\"Destroy\":\"Supprimer\",\"Disabled\":\"Désactivé\",\"Do you want to clear history?\":\"Voulez-vous vider l’historique ?\",\"Document\":\"Document\",\"Download count\":\"Nombre de téléchargements\",\"Drop files to upload\":\"Glisser des fichiers pour les envoyer.\",\"Drop to upload.\":\"Déposer pour envoyer.\",\"E-Mail Address\":\"Adresse email\",\"Edit\":\"Modifier\",\"Edit block\":\"Modifier le bloc de contenu\",\"Edit event\":\"Modifier l’événement\",\"Edit file\":\"Modifier le fichier\",\"Edit menu\":\"Modifier le menu\",\"Edit menulink\":\"Modifier le lien de menu\",\"Edit news\":\"Modifier l’actualité\",\"Edit object\":\"Modifier object\",\"Edit page\":\"Modifier la page\",\"Edit partner\":\"Modifier le partenaire\",\"Edit place\":\"Modifier l’adresse\",\"Edit product\":\"Modifier product\",\"Edit project\":\"Modifier le projet\",\"Edit role\":\"Modifier le rôle\",\"Edit slide\":\"Modifier le slide\",\"Edit tag\":\"Modifier le tag\",\"Edit translation\":\"Modifier la traduction\",\"Email\":\"E-mail\",\"Empty history\":\"Vider l’historique\",\"En ligne/Hors ligne\":\"En ligne/Hors ligne\",\"Enabled\":\"Activé\",\"End date\":\"Date de fin\",\"End time\":\"Heure de fin\",\"Enter a name for the new folder.\":\"Entrez le nom du nouveau dossier.\",\"Environment\":\"Environnement\",\"Error\":\"Erreur\",\"Events\":\"Événements\",\"Excerpt\":\"Extrait\",\"Exit\":\"Sortir\",\"Extension\":\"Extension\",\"Fax\":\"Fax\",\"File\":\"Fichier\",\"File information\":\"Informations sur le fichier\",\"Filename\":\"Nom du fichier\",\"Files\":\"Fichiers\",\"Filter\":\"Filtrer\",\"Find nearest\":\"Trouver l’adresse la plus proche\",\"First name\":\"Prénom\",\"Forbidden\":\"Interdit\",\"Forgot Your Password?\":\"Vous avez oublié votre mot de passe ?\",\"from\":\"du\",\"Front office\":\"Public\",\"Gender\":\"Genre\",\"Generate\":\"Générer\",\"Go Home\":\"Aller à l’accueil\",\"Google Analytics Tracking Id\":\"Google Analytics Tracking Id\",\"Grid\":\"Grille\",\"Groups\":\"Groupes\",\"Height\":\"Hauteur\",\"Hello!\":\"Bonjour !\",\"HH:MM\":\"HH:MM\",\"hi\":\"salut\",\"History is empty.\":\"L’historique est vide.\",\"Home\":\"Accueil\",\"Homepage\":\"Sur la page d’accueil\",\"Hour\":\"Heure\",\"Icon class\":\"Class d’icône\",\"If you did not create an account, no further action is required.\":\"Si vous n’avez pas créé de compte, aucune action supplémentaire n’est requise.\",\"If you did not receive the email\":\"Si vous n’avez pas reçu l’email\",\"If you did not request a password reset, no further action is required.\":\"Si vous n’avez pas demandé de réinitialisation de mot de passe, aucune autre action n’est requise.\",\"If you’re having trouble clicking the \\\":actionText\\\" button, copy and paste the URL below\\ninto your web browser: [:actionURL](:actionURL)\":\"Si vous avez des problèmes en cliquant sur le bouton “:actionText”, faites un copié/collé de l’url ci-dessous dans votre navigateur : [:actionURL](:actionURL)\",\"Image\":\"Image\",\"Images\":\"Images\",\"Impossible to delete more than # items in one go.\":\"Impossible de supprimer plus de {deleteLimit} éléments en une fois.\",\"Index\":\"Voir liste\",\"Info\":\"Info\",\"Insert\":\"Insérer\",\"Is home\":\"Définir en tant que page d’accueil\",\"Item is published.\":\"L’élément a été publié.\",\"Item is unpublished.\":\"L’élément a été dépublié.\",\"Js\":\"Code JavaScript\",\"KB\":\"Ko\",\"Key\":\"Clé\",\"Keywords\":\"Mots-clés\",\"Lang Chooser\":\"Page de choix de langue\",\"Language\":\"Langue\",\"Last name\":\"Nom\",\"Latest changes\":\"Activité récente\",\"Latitude\":\"Latitude\",\"List\":\"Liste\",\"Loading…\":\"Chargement…\",\"Locales\":\"Langues\",\"Location\":\"Lieu\",\"Login\":\"Connexion\",\"Logo\":\"Logo\",\"Logout\":\"Déconnexion\",\"Longitude\":\"Longitude\",\"Mandatory fields\":\"Champs obligatoires\",\"Max\":\"Maximum\",\"Max :size MB\":\"Maximum :size Mo\",\"MB\":\"Mo\",\"Media\":\"Médias\",\"Menu\":\"Menu\",\"Menulink\":\"Lien de menu\",\"Menulinks\":\"Liens de menu\",\"Menus\":\"Menus\",\"Message\":\"Message\",\"Meta\":\"Meta\",\"Meta description\":\"Meta description\",\"Meta keywords\":\"Meta mots clés\",\"Meta title\":\"Meta titre\",\"Mimetype\":\"Type Mime\",\"Minute\":\"Minute\",\"Mobile\":\"Portable\",\"Modify\":\"Modifier\",\"Module\":\"Module\",\"Module name\":\"Nom du module\",\"Month\":\"Mois\",\"Move to parent folder\":\"Placer dans le dossier parent\",\"Mr\":\"M.\",\"Mrs\":\"Mme\",\"Name\":\"Nom\",\"New block\":\"Nouveau bloc de contenu\",\"New contact\":\"Nouveau contact\",\"New contact request\":\"Nouvelle demande de contact\",\"New contact request from\":\"Nouvelle demande de contact de\",\"New event\":\"Nouvel événement\",\"New file\":\"Nouveau fichier\",\"New folder\":\"Nouveau dossier\",\"New menu\":\"Nouveau menu\",\"New menulink\":\"Nouveau lien de menu\",\"New news\":\"Nouvelle actualité\",\"New object\":\"Nouveau object\",\"New page\":\"Nouvelle page\",\"New page section\":\"Nouvelle section de page\",\"New partner\":\"Nouveau partenaire\",\"New password\":\"Nouveau mot de passe\",\"New place\":\"Nouvelle adresse\",\"New product\":\"Nouveau product\",\"New project\":\"Nouveau projet\",\"New project category\":\"Nouvelle catégorie de Projets\",\"New role\":\"Nouveau rôle\",\"New slide\":\"Nouveau slide\",\"New tab\":\"Nouvel onglet\",\"New tag\":\"Nouveau tag\",\"New translation\":\"Nouvelle traduction\",\"New user\":\"Nouvel utilisateur\",\"News\":\"Actualités\",\"News feed\":\"Flux d’actualités\",\"Next\":\"Suivant\",\"No\":\"Non\",\"No default page found\":\"Aucune page d’accueil trouvée\",\"No file\":\"Aucun fichier\",\"No menu found with name “:name”\":\"Le menu « :name » n’a pas été trouvé.\",\"None\":\"Aucun\",\"Not a member?\":\"Vous n'êtes pas membre ?\",\"Not found\":\"Introuvable\",\"Nothing found.\":\"Rien n’a été trouvé.\",\"Objects\":\"Objects\",\"Offline\":\"Hors ligne\",\"Oh no\":\"Oh non\",\"on\":\"le\",\"Online\":\"En ligne\",\"Options\":\"Options\",\"Page\":\"Page\",\"Page Expired\":\"Page expirée\",\"Page Not Found\":\"Page non trouvée\",\"Page sections\":\"Sections de page\",\"Pages\":\"Pages\",\"Partners\":\"Partenaires\",\"Password\":\"Mot de passe\",\"Password confirmation\":\"Confirmer le mot de passe\",\"Past events\":\"Événements passés\",\"Path\":\"Chemin\",\"per page\":\"par page\",\"Permissions\":\"Permissions\",\"Phone\":\"Téléphone\",\"Places\":\"Adresses\",\"Please click the button below to verify your email address.\":\"Veuillez cliquer sur le bouton ci-dessous pour vérifier votre adresse email.\",\"Position\":\"Position\",\"Postcode\":\"Code postal\",\"Preview\":\"Prévisualisation\",\"Previous\":\"Précédent\",\"Price\":\"Prix\",\"Private\":\"Privée\",\"Products\":\"Products\",\"Profile\":\"Profil\",\"Project categories\":\"Catégories de projets\",\"Projects\":\"Projets\",\"Publish\":\"Publier\",\"Publish website\":\"Publier le site web\",\"Published\":\"Publié\",\"Published items\":\"Publiés\",\"Published on\":\"Publié le\",\"Read more\":\"En savoir plus\",\"Redirect to first child\":\"Rediriger vers le premier enfant\",\"Regards\":\"Cordialement\",\"Register\":\"S’inscrire\",\"Registration allowed\":\"Permettre la création de comptes utilisateurs\",\"Remember Me\":\"Se souvenir de moi\",\"Replace\":\"Remplacer\",\"Replace file\":\"Remplacer le fichier\",\"Replace image\":\"Remplacer l’image\",\"Reset\":\"Réinitialiser\",\"Reset Password\":\"Réinitialiser le mot de passe\",\"Reset Password Notification\":\"Notification de réinitialisation du mot de passe\",\"Restricted to\":\"Restreint à\",\"Role permissions\":\"Permissions du rôle\",\"Roles\":\"Rôles\",\"Save\":\"Enregistrer\",\"Save and exit\":\"Enregistrer et sortir\",\"Save this item first, then add files.\":\"Enregistrez d’abord cet élément, puis ajoutez des fichiers.\",\"Save this page first, then add sections.\":\"Enregistrez d’abord cette page, puis ajoutez des sections.\",\"Search\":\"Chercher\",\"Second\":\"Seconde\",\"Sections\":\"Sections\",\"See history\":\"Voir l’historique\",\"See navbar\":\"Voir la barre de navigation\",\"See online\":\"Voir en ligne\",\"See settings\":\"Voir la configuration\",\"Select all\":\"Tout sélectionner\",\"Send\":\"Envoyer\",\"Send Password Reset Link\":\"Envoyer le lien de réinitialisation\",\"Service Unavailable\":\"Service indisponible\",\"Settings\":\"Configuration\",\"Show categories\":\"Afficher les catégories\",\"Show on map\":\"afficher sur la carte\",\"Side\":\"Côté\",\"Size\":\"Taille\",\"Size (px)\":\"Taille (px)\",\"Slides\":\"Slides\",\"Slug\":\"Slug\",\"Sorry, an error occurred.\":\"Désolé, une erreur est survenue.\",\"Sorry, the page you are looking for could not be found.\":\"Désolé, la page que vous recherchez est introuvable.\",\"Sorry, we are doing some maintenance. Please check back soon.\":\"Désolé, nous sommes en maintenance. Veuillez revenir plus tard.\",\"Sorry, you are forbidden from accessing this page.\":\"Désolé, vous ne pouvez accéder à cette page.\",\"Sorry, you are making too many requests to our servers.\":\"Désolé, vous faites trop de requêtes vers nos serveurs.\",\"Sorry, you are not authorized to access this page.\":\"Désolé, vous n’êtes pas autorisé à accéder à cette page.\",\"Sorry, your session has expired. Please refresh and try again.\":\"Désolé, votre session a expiré. Veuillez actualiser la page et réessayer.\",\"Sort\":\"Ordonner\",\"Start date\":\"Date de début\",\"Start time\":\"Heure de début\",\"Status\":\"Statut\",\"Store\":\"Créer\",\"Submit\":\"Envoyer\",\"Summary\":\"Résumé\",\"Superuser\":\"Super utilisateur\",\"System info\":\"Informations système\",\"System locales\":\"Locales du système\",\"Tag\":\"Tag\",\"Tags\":\"Tags\",\"Target\":\"Cible\",\"Template\":\"Template\",\"Thank you for your contact request.\":\"Merci pour votre demande de contact.\",\"The form contains errors:\":\"Le formulaire contient des erreurs :\",\"The password is incorrect.\":\"Le mot de passe est incorrect.\",\"This action is unauthorized.\":\"Cette action n’est pas autorisée.\",\"This item cannot be deleted because it has children.\":\"Cet élément ne peut pas être supprimé car il a des descendants.\",\"This password reset link will expire in :count minutes.\":\"Ce lien de réinitialisation du mot de passe expirera dans :count minutes.\",\"This user is not activated.\":\"Cet utilisateur n’a pas été activé.\",\"This user was not found.\":\"Cet utilisateur n’a pas été trouvé.\",\"Time\":\"Heure\",\"Title\":\"Titre\",\"to\":\"au\",\"Toggle navigation\":\"Menu\",\"Too Many Requests\":\"Trop de requêtes\",\"Translation\":\"Traduction\",\"Translations\":\"Traductions\",\"Type\":\"Type\",\"Unauthorized\":\"Non autorisé\",\"Unpublish\":\"Dépublier\",\"Unpublished\":\"Dépublié\",\"Unpublished items\":\"Dépubliés\",\"Upcoming events\":\"Événements à venir\",\"Update\":\"Mettre à jour\",\"Upload files\":\"Envoyer des fichiers\",\"Uri\":\"URI\",\"Url\":\"URL\",\"User\":\"Utilisateur\",\"User permissions\":\"Permissions de l’utilisateur\",\"Username\":\"Pseudo\",\"Users\":\"Utilisateurs\",\"Users and roles\":\"Utilisateurs et rôles\",\"Uses\":\"Utilisations\",\"Venue\":\"Lieu\",\"Verify Email Address\":\"Vérification de l’adresse email\",\"Verify Your Email Address\":\"Vérifiez votre adresse email\",\"View\":\"Voir\",\"View list\":\"Voir la liste\",\"View online\":\"Voir en ligne\",\"View website\":\"Voir le site\",\"Webmaster Email\":\"Email du webmaster\",\"Website\":\"Site web\",\"Website baseline\":\"Baseline du site\",\"Website title\":\"Titre du site\",\"Welcome, :name!\":\"Bienvenue :name !\",\"Whoops!\":\"Oups !\",\"Whoops, something went wrong on our servers.\":\"Oups, quelque chose s’est mal passé sur nos serveurs.\",\"Width\":\"Largeur\",\"Year\":\"Année\",\"Yes\":\"Oui\",\"You are receiving this email because we received a password reset request for your account.\":\"Vous recevez cet email car nous avons reçu une demande de réinitialisation de mot de passe pour votre compte.\",\"Your account has been activated, you can now log in\":\"Votre compte a été activé, vous pouvez vous connecter.\",\"Your account has been created, check your email for the verification link.\":\"Votre compte a été créé, un lien de vérification vous a été envoyé.\",\"Your account has been created, now you need to verify it.\":\"Votre compte a été créé, vous devez maintenant le vérifier.\",\"Your email address has been verified.\":\"Votre adresse email a bien été vérifiée.\"}");
+
+/***/ }),
+
+/***/ "./resources/lang/ru.json":
+/*!********************************!*\
+  !*** ./resources/lang/ru.json ***!
+  \********************************/
+/*! exports provided: # blocks, # categories, # contacts, # events, # files could not be moved., # files moved., # items deleted, # items published, # items selected, # items unpublished, # menus, # news, # pages, # partners, # places, # projects, # roles, # sections, # slides, # tags, # translations, # users, Are you sure you want to delete # items?, Are you sure you want to delete “{title}”?, Are you sure you want to publish # items?, Are you sure you want to unpublish # items?, Save document and continue!, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"# blocks\":\"no blocks | 1 block | {count} blocks\",\"# categories\":\"No categories | 1 categorie | {count} categories\",\"# contacts\":\"no contacts | 1 contact | {count} contacts\",\"# events\":\"no events | 1 event | {count} events\",\"# files could not be moved.\":\"No files could be moved. | 1 file could not be moved. | {count} files could not be moved.\",\"# files moved.\":\"No files moved. | 1 file moved. | {count} files moved.\",\"# items deleted\":\"1 item deleted | {count} items deleted\",\"# items published\":\"1 item published | {count} items published\",\"# items selected\":\"no items selected | 1 item selected | {count} items selected\",\"# items unpublished\":\"1 item unpublished | {count} items unpublished\",\"# menus\":\"no menus | 1 menu | {count} menus\",\"# news\":\"No news | 1 news | {count} news\",\"# pages\":\"No pages | 1 page | {count} pages\",\"# partners\":\"no partners | 1 partner | {count} partners\",\"# places\":\"No addresses | 1 address | {count} addresses\",\"# projects\":\"no projects | 1 project | {count} projects\",\"# roles\":\"no roles | 1 role | {count} roles\",\"# sections\":\"No sections | 1 section | {count} sections\",\"# slides\":\"no slides | 1 slide | {count} slides\",\"# tags\":\"no tags | 1 tag | {count} tags\",\"# translations\":\"No translations | 1 translation | {count} translations\",\"# users\":\"no users | 1 user | {count} users\",\"Are you sure you want to delete # items?\":\"Are you sure you want to delete {count} item? | Are you sure you want to delete {count} items?\",\"Are you sure you want to delete “{title}”?\":\"Are you sure you want to delete “{title}”?\",\"Are you sure you want to publish # items?\":\"Are you sure you want to publish 1 item? | Are you sure you want to publish {count} items?\",\"Are you sure you want to unpublish # items?\":\"Are you sure you want to unpublish 1 item? | Are you sure you want to unpublish {count} items?\",\"Save document and continue!\":\"Сохраните документ перед продолжением!\"}");
 
 /***/ }),
 

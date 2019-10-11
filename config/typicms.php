@@ -44,4 +44,6 @@ return [
     */
     'mariadb' => false,
 
+
+    'admin_locale' => 'en',
 ];

@@ -45,6 +45,7 @@ import VueI18n from 'vue-i18n';
 import fr from '../lang/fr.json';
 import en from '../lang/en.json';
 import es from '../lang/es.json';
+import ru from '../lang/ru.json';
 const messages = { fr, en, es };
 const i18n = new VueI18n({ locale: 'en', messages });
 
@@ -80,6 +81,7 @@ import Reports from './components/Reports.vue';
 import Filepicker from './components/Filepicker.vue';
 import Files from './components/Files.vue';
 import FileField from './components/FileField.vue';
+import MultiInputFileField from './components/MultiInputFileField.vue';
 
 window.EventBus = new Vue({});
 
@@ -95,6 +97,7 @@ new Vue({
         Filepicker,
         Files,
         FileField,
+        MultiInputFileField,
         History,
         Reports,
     },
