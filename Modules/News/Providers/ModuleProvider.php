@@ -9,6 +9,7 @@ use TypiCMS\Modules\Core\Observers\SlugObserver;
 use TypiCMS\Modules\News\Composers\SidebarViewComposer;
 use TypiCMS\Modules\News\Facades\News as NewsFacade;
 use TypiCMS\Modules\News\Models\News;
+use TypiCMS\Modules\Tags\Observers\TagObserver;
 
 class ModuleProvider extends ServiceProvider
 {
@@ -39,6 +40,7 @@ class ModuleProvider extends ServiceProvider
 
         // Observers
         News::observe(new SlugObserver());
+        News::observe(new TagObserver());
 
         /*
          * Sidebar view composer

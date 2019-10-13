@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\News\Models\News;
-use App\Classes\Observers\TaggableObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +24,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        News::observe(TaggableObserver::class);
     }
 }

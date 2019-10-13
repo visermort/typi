@@ -22,7 +22,8 @@
     {!! TranslatableBootForm::hidden('status')->value(0) !!}
     {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}
 </div>
+
+{!! BootForm::text(__('Tags'), 'tags')->value(old('tags') ? : implode(',', $model->tags->pluck('tag')->all())) !!}
+
 {!! TranslatableBootForm::textarea(__('Summary'), 'summary')->rows(4) !!}
 {!! TranslatableBootForm::textarea(__('Body'), 'body')->addClass('ckeditor') !!}
-
-@include ('tags::admin._list_module')
