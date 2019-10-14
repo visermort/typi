@@ -13,8 +13,8 @@ class FormRequest extends AbstractFormRequest
             'date' => 'required|date_format:Y-m-d',
             'website' => 'nullable|url|max:255',
             'image_id' => 'nullable|integer',
-            'title.*' => 'nullable|max:255',
-            'slug.*' => 'nullable|alpha_dash|max:255',
+            'title.*' => 'required|max:255',
+            'slug.*' => 'required|alpha_dash|max:255',
         ];
     }
 }

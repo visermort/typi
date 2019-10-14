@@ -5,6 +5,7 @@ namespace TypiCMS\Modules\Products\Http\Controllers;
 use Illuminate\View\View;
 use TypiCMS\Modules\Core\Http\Controllers\BasePublicController;
 use TypiCMS\Modules\Products\Models\Product;
+use Cache;
 
 class PublicController extends BasePublicController
 {
@@ -18,9 +19,11 @@ class PublicController extends BasePublicController
 
     public function show($slug): View
     {
-        $model = Product::published()->whereSlugIs($slug)->firstOrFail();
+        return Cache::get('product_by_slug_'.$slug, function () use ($slug) {
+            $model = Product::published()->whereSlugIs($slug)->firstOrFail();
 
-        return view('products::public.show')
-            ->with(compact('model'));
+            return view('products::public.show')
+                ->with(compact('model'));
+        });
     }
 }
