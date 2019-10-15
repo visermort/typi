@@ -1,0 +1,10 @@
+.modal {
+  &-dialog {
+    max-width: 90%;
+    z-index: 1001;
+
+    @media (max-width: 720px) {
+      max-width: 100%;
+    }
+  }
+}

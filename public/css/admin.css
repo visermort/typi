@@ -15145,6 +15145,17 @@ a.text-dark:hover, a.text-dark:focus {
   color: red;
 }
 
+.modal-dialog {
+  max-width: 90%;
+  z-index: 1001;
+}
+
+@media (max-width: 720px) {
+  .modal-dialog {
+    max-width: 100%;
+  }
+}
+
 html {
   height: 100%;
 }

@@ -71,6 +71,8 @@
 
     </div>
 
+    @include('modals.admin.load_modal');
+
 </div>
 
 </body>

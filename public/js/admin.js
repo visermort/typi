@@ -54208,6 +54208,7 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./ajax-load.js": "./resources/js/admin/ajax-load.js",
 	"./checkboxes-permissions.js": "./resources/js/admin/checkboxes-permissions.js",
 	"./croppa.js": "./resources/js/admin/croppa.js",
 	"./delete-attachment.js": "./resources/js/admin/delete-attachment.js",
@@ -54411,6 +54412,47 @@ var req = __webpack_require__("./resources/js/admin sync recursive ^(.*\\.(js$))
 req.keys().forEach(function (key) {
   req(key);
 });
+
+/***/ }),
+
+/***/ "./resources/js/admin/ajax-load.js":
+/*!*****************************************!*\
+  !*** ./resources/js/admin/ajax-load.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var ajaxLoad = function () {
+  $('body').on('click', '.load-modal', function (e) {
+    e.preventDefault();
+    var that = $(this);
+    var href = that.attr('href');
+    var modal = $('#load-modal');
+
+    if (!href || !modal) {
+      return;
+    }
+
+    that.addClass('loading');
+    axios.get(href, null).then(function (response) {
+      console.log(response);
+
+      if (response) {
+        if (response.data.title) {
+          modal.find('.modal-title').html(response.data.title);
+        }
+
+        if (response.data.content) {
+          modal.find('.modal-body').html(response.data.content);
+        }
+      }
+
+      modal.modal();
+    })["catch"](function (error) {
+      console.log('error', error);
+    });
+  });
+}();
 
 /***/ }),
 
