@@ -9023,13 +9023,13 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
- * Cropper.js v1.5.4
+ * Cropper.js v1.5.6
  * https://fengyuanchen.github.io/cropperjs
  *
  * Copyright 2015-present Chen Fengyuan
  * Released under the MIT license
  *
- * Date: 2019-08-03T08:38:42.128Z
+ * Date: 2019-10-04T04:33:48.372Z
  */
 
 (function (global, factory) {
@@ -9071,6 +9071,55 @@ __webpack_require__.r(__webpack_exports__);
     if (protoProps) _defineProperties(Constructor.prototype, protoProps);
     if (staticProps) _defineProperties(Constructor, staticProps);
     return Constructor;
+  }
+
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  }
+
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread2(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys(source, true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys(source).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+      }
+    }
+
+    return target;
   }
 
   function _toConsumableArray(arr) {
@@ -9763,7 +9812,8 @@ __webpack_require__.r(__webpack_exports__);
    */
 
   function getMaxZoomRatio(pointers) {
-    var pointers2 = assign({}, pointers);
+    var pointers2 = _objectSpread2({}, pointers);
+
     var ratios = [];
     forEach(pointers, function (pointer, pointerId) {
       delete pointers2[pointerId];
@@ -9797,7 +9847,7 @@ __webpack_require__.r(__webpack_exports__);
       endX: pageX,
       endY: pageY
     };
-    return endOnly ? end : assign({
+    return endOnly ? end : _objectSpread2({
       startX: pageX,
       startY: pageY
     }, end);
@@ -10841,10 +10891,10 @@ __webpack_require__.r(__webpack_exports__);
       var buttons = event.buttons,
           button = event.button;
 
-      if (this.disabled // No primary button (Usually the left button)
-      // Note that touch events have no `buttons` or `button` property
-      || isNumber(buttons) && buttons !== 1 || isNumber(button) && button !== 0 // Open context menu
-      || event.ctrlKey) {
+      if (this.disabled // Handle mouse event and pointer event and ignore touch event
+      || (event.type === 'mousedown' || event.type === 'pointerdown' && event.pointerType === 'mouse') && ( // No primary button (Usually the left button)
+      isNumber(buttons) && buttons !== 1 || isNumber(button) && button !== 0 // Open context menu
+      || event.ctrlKey)) {
         return;
       }
 
@@ -30261,7 +30311,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Sortable", function() { return Sortable; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Swap", function() { return SwapPlugin; });
 /**!
- * Sortable 1.10.0
+ * Sortable 1.10.1
  * @author	RubaXa   <trash@rubaxa.org>
  * @author	owenm    <owen23355@gmail.com>
  * @license MIT
@@ -30388,12 +30438,14 @@ function _nonIterableSpread() {
   throw new TypeError("Invalid attempt to spread non-iterable instance");
 }
 
-var version = "1.10.0";
+var version = "1.10.1";
 
 function userAgent(pattern) {
-  return !!
-  /*@__PURE__*/
-  navigator.userAgent.match(pattern);
+  if (typeof window !== 'undefined' && window.navigator) {
+    return !!
+    /*@__PURE__*/
+    navigator.userAgent.match(pattern);
+  }
 }
 
 var IE11OrLess = userAgent(/(?:Trident.*rv[ :]?11\.|msie|iemobile|Windows Phone)/i);
@@ -31228,10 +31280,6 @@ function _dispatchEvent(info) {
   }, info));
 }
 
-if (typeof window === "undefined" || !window.document) {
-  throw new Error("Sortable.js requires a window with a document");
-}
-
 var dragEl,
     parentEl,
     ghostEl,
@@ -31269,12 +31317,14 @@ _silent = false,
     savedInputChecked = [];
 /** @const */
 
-var PositionGhostAbsolutely = IOS,
+var documentExists = typeof document !== 'undefined',
+    PositionGhostAbsolutely = IOS,
     CSSFloatProperty = Edge || IE11OrLess ? 'cssFloat' : 'float',
     // This will not pass for IE9, because IE9 DnD only works on anchors
-supportDraggable = !ChromeForAndroid && !IOS && 'draggable' in document.createElement('div'),
+supportDraggable = documentExists && !ChromeForAndroid && !IOS && 'draggable' in document.createElement('div'),
     supportCssPointerEvents = function () {
-  // false when <= IE11
+  if (!documentExists) return; // false when <= IE11
+
   if (IE11OrLess) {
     return false;
   }
@@ -31388,15 +31438,17 @@ _detectNearestEmptySortable = function _detectNearestEmptySortable(x, y) {
 }; // #1184 fix - Prevent click event on fallback if dragged but item not changed position
 
 
-document.addEventListener('click', function (evt) {
-  if (ignoreNextClick) {
-    evt.preventDefault();
-    evt.stopPropagation && evt.stopPropagation();
-    evt.stopImmediatePropagation && evt.stopImmediatePropagation();
-    ignoreNextClick = false;
-    return false;
-  }
-}, true);
+if (documentExists) {
+  document.addEventListener('click', function (evt) {
+    if (ignoreNextClick) {
+      evt.preventDefault();
+      evt.stopPropagation && evt.stopPropagation();
+      evt.stopImmediatePropagation && evt.stopImmediatePropagation();
+      ignoreNextClick = false;
+      return false;
+    }
+  }, true);
+}
 
 var nearestEmptyInsertDetectEvent = function nearestEmptyInsertDetectEvent(evt) {
   if (dragEl) {
@@ -32856,11 +32908,14 @@ function _cancelNextTick(id) {
 } // Fixed #973:
 
 
-on(document, 'touchmove', function (evt) {
-  if ((Sortable.active || awaitingDragStarted) && evt.cancelable) {
-    evt.preventDefault();
-  }
-}); // Export utils
+if (documentExists) {
+  on(document, 'touchmove', function (evt) {
+    if ((Sortable.active || awaitingDragStarted) && evt.cancelable) {
+      evt.preventDefault();
+    }
+  });
+} // Export utils
+
 
 Sortable.utils = {
   on: on,
@@ -33162,6 +33217,7 @@ var drop = function drop(_ref) {
       dispatchSortableEvent = _ref.dispatchSortableEvent,
       hideGhostForTarget = _ref.hideGhostForTarget,
       unhideGhostForTarget = _ref.unhideGhostForTarget;
+  if (!originalEvent) return;
   var toSortable = putSortable || activeSortable;
   hideGhostForTarget();
   var touch = originalEvent.changedTouches && originalEvent.changedTouches.length ? originalEvent.changedTouches[0] : originalEvent;
@@ -34575,7 +34631,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /*!
- * vue-i18n v8.14.1 
+ * vue-i18n v8.15.0 
  * (c) 2019 kazuya kawaguchi
  * Released under the MIT License.
  */
@@ -34977,7 +35033,7 @@ function onlyHasDefaultPlace (params) {
 
 function useLegacyPlaces (children, places) {
   var params = places ? createParamsFromPlaces(places) : {};
-  
+
   if (!children) { return params }
 
   // Filter empty text nodes
@@ -35658,7 +35714,7 @@ var htmlTagMatcher = /<\/?[\w\s="/.':;#-\/]+>/;
 var linkKeyMatcher = /(?:@(?:\.[a-z]+)?:(?:[\w\-_|.]+|\([\w\-_|.]+\)))/g;
 var linkKeyPrefixMatcher = /^@(?:\.([a-z]+))?:/;
 var bracketsMatcher = /[()]/g;
-var formatters = {
+var defaultModifiers = {
   'upper': function (str) { return str.toLocaleUpperCase(); },
   'lower': function (str) { return str.toLocaleLowerCase(); }
 };
@@ -35685,6 +35741,7 @@ var VueI18n = function VueI18n (options) {
 
   this._vm = null;
   this._formatter = options.formatter || defaultFormatter;
+  this._modifiers = options.modifiers || {};
   this._missing = options.missing || null;
   this._root = options.root || null;
   this._sync = options.sync === undefined ? true : !!options.sync;
@@ -36031,8 +36088,11 @@ VueI18n.prototype._link = function _link (
       locale, linkPlaceholder, translated, host,
       Array.isArray(values) ? values : [values]
     );
-    if (formatters.hasOwnProperty(formatterName)) {
-      translated = formatters[formatterName](translated);
+
+    if (this._modifiers.hasOwnProperty(formatterName)) {
+      translated = this._modifiers[formatterName](translated);
+    } else if (defaultModifiers.hasOwnProperty(formatterName)) {
+      translated = defaultModifiers[formatterName](translated);
     }
 
     visitedLinkStack.pop();
@@ -36508,7 +36568,7 @@ Object.defineProperty(VueI18n, 'availabilities', {
 });
 
 VueI18n.install = install;
-VueI18n.version = '8.14.1';
+VueI18n.version = '8.15.0';
 
 /* harmony default export */ __webpack_exports__["default"] = (VueI18n);
 
@@ -53584,10 +53644,15 @@ function _nonIterableSpread() {
 function _toConsumableArray(arr) {
   return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
 }
+// EXTERNAL MODULE: external {"commonjs":"sortablejs","commonjs2":"sortablejs","amd":"sortablejs","root":"Sortable"}
+var external_commonjs_sortablejs_commonjs2_sortablejs_amd_sortablejs_root_Sortable_ = __webpack_require__("a352");
+var external_commonjs_sortablejs_commonjs2_sortablejs_amd_sortablejs_root_Sortable_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_sortablejs_commonjs2_sortablejs_amd_sortablejs_root_Sortable_);
+
 // EXTERNAL MODULE: ./src/util/helper.js
 var helper = __webpack_require__("c649");
 
 // CONCATENATED MODULE: ./src/vuedraggable.js
+
 
 
 
@@ -53842,10 +53907,7 @@ var draggableComponent = {
     });
 
     !("draggable" in options) && (options.draggable = ">*");
-
-    var Sortable = __webpack_require__("a352").default;
-
-    this._sortable = new Sortable(this.rootContainer, options);
+    this._sortable = new external_commonjs_sortablejs_commonjs2_sortablejs_amd_sortablejs_root_Sortable_default.a(this.rootContainer, options);
     this.computeIndexes();
   },
   beforeDestroy: function beforeDestroy() {
@@ -55138,7 +55200,23 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 (function () {
+  var validators = {
+    'required': {
+      'function': validateRequired,
+      'message': ':title is required'
+    },
+    'max': {
+      'function': validateMax,
+      'message': ':title may not be greater than :value'
+    },
+    'min': {
+      'function': validateMin,
+      'message': ':title must be at least :value'
+    }
+  };
   $('body').on('click', '.btn-lang-js', function () {
     var locale = $(this).data('locale');
 
@@ -55211,8 +55289,95 @@ $(function () {
     $(row).find('select').val('');
     $(row).find('textarea').html('');
     $(row).find('.multiinput tbody tr:not(:first)').remove();
-    $(row).find('.filemanager-item-trans').addClass('new-item');
+    $(row).find('.filemanager-item-trans').addClass('new-item').closest('td').attr('data-rules', null);
   }
+
+  function validateRequired(value) {
+    return value && value !== "undefined" && value !== "";
+  }
+
+  function validateMax(value, max) {
+    return !value || value === "undefined" || value.length <= max;
+  }
+
+  function validateMin(value, min) {
+    return value && value !== "undefined" && value.length >= min;
+  }
+
+  function renderValidationMessage(template, params) {
+    for (var param in params) {
+      template = template.replace(':' + param, params[param]);
+    }
+
+    return template;
+  }
+
+  function errorHandle(element, add, message) {
+    var formGroup = element.closest('.form-group');
+
+    if (add) {
+      element.addClass('is-invalid');
+      var feedback = formGroup.find('.multiinput-invalid-feedback');
+
+      if (!feedback.length) {
+        feedback = $('<div class="multiinput-invalid-feedback"></div>');
+        feedback.appendTo(formGroup);
+      }
+
+      $(feedback).html(message);
+    } else {
+      element.removeClass('is-invalid');
+      formGroup.find('.multiinput-invalid-feedback').remove();
+    }
+  }
+
+  function validateForm(form) {
+    var success = true;
+    $(form).find('.multiinput').find('input,textarea,select').each(function (i, element) {
+      element = $(element);
+      errorHandle(element, false);
+      var rules = element.closest('td').data('rules');
+
+      if (typeof rules !== "undefined") {
+        if (rules) {
+          var messages = [];
+          var messageParams = {
+            'title': element.siblings('label').html()
+          };
+
+          for (var rule in rules) {
+            if (typeof validators[rule] !== "undefined" && typeof validators[rule]['function'] !== "undefined") {
+              var result = validators[rule]['function'](element.val(), rules[rule]);
+
+              if (!result) {
+                if (_typeof(rules[rule]) != 'object') {
+                  messageParams['value'] = rules[rule];
+                }
+
+                messages.push(renderValidationMessage(validators[rule]['message'], messageParams));
+              }
+            }
+          }
+
+          if (messages.length) {
+            success = false;
+            errorHandle(element, true, messages.join(', '));
+          }
+        }
+      }
+    });
+    return success;
+  }
+
+  $(document).ready(function () {
+    $('.multiinput').closest('form').on('submit', function () {
+      if (validateForm(this)) {
+        return true;
+      }
+
+      return false;
+    });
+  });
 })();
 
 /***/ }),

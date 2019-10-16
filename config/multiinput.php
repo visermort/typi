@@ -24,7 +24,8 @@ return [
                 "name" => "title",
                 "title" => "Title",
                 "type" => "Varchar",
-                "translatable" => true
+                "translatable" => true,
+                'rules' => 'required|max:255',
             ],
             [
                 "name" => "description",
@@ -53,7 +54,9 @@ return [
                 "name" => "advantage_image",
                 "title" => "Image",
                 "type" => "Image",
-                "translatable" => true
+                "translatable" => true,
+                'rules' => 'required',
+
             ],
             [
                 "name" => "document",
@@ -81,12 +84,14 @@ return [
                         "name" => "feature_title",
                         "title" => "Feature Title",
                         "type" => "Varchar",
-                        "translatable" => true
+                        "translatable" => true,
+                        'rules' => 'required|max:255',
                     ],
                     [
                         "name" => "feature_image",
                         "title" => "Feature Image",
-                        "type" => "Image"
+                        "type" => "Image",
+                        'rules' => 'required',
                     ],
                 ],
                 "order" => ["feature_title" => "ASC"],

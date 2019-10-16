@@ -494,16 +494,16 @@
         },
         {
             "name": "genealabs/laravel-model-caching",
-            "version": "0.7.1",
+            "version": "0.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GeneaLabs/laravel-model-caching.git",
-                "reference": "1ec407473c58b213d99ea256de1b85b148feba81"
+                "reference": "71208840cf4e8d70bc78f7fc45d548e659f36c5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GeneaLabs/laravel-model-caching/zipball/1ec407473c58b213d99ea256de1b85b148feba81",
-                "reference": "1ec407473c58b213d99ea256de1b85b148feba81",
+                "url": "https://api.github.com/repos/GeneaLabs/laravel-model-caching/zipball/71208840cf4e8d70bc78f7fc45d548e659f36c5b",
+                "reference": "71208840cf4e8d70bc78f7fc45d548e659f36c5b",
                 "shasum": ""
             },
             "require": {
@@ -553,7 +553,7 @@
                 }
             ],
             "description": "Automatic caching for Eloquent models.",
-            "time": "2019-09-16T00:19:20+00:00"
+            "time": "2019-10-13T00:18:22+00:00"
         },
         {
             "name": "genealabs/laravel-pivot-events",
@@ -986,16 +986,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.1.0",
+            "version": "v6.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "a365bea7ff0dea9a50f5904be9e41656def9af4b"
+                "reference": "cacce5a77fa94793cf25345d67387632134d75dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/a365bea7ff0dea9a50f5904be9e41656def9af4b",
-                "reference": "a365bea7ff0dea9a50f5904be9e41656def9af4b",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/cacce5a77fa94793cf25345d67387632134d75dd",
+                "reference": "cacce5a77fa94793cf25345d67387632134d75dd",
                 "shasum": ""
             },
             "require": {
@@ -1091,6 +1091,7 @@
                 "league/flysystem-sftp": "Required to use the Flysystem SFTP driver (^1.0).",
                 "moontoast/math": "Required to use ordered UUIDs (^1.1).",
                 "pda/pheanstalk": "Required to use the beanstalk queue driver (^4.0).",
+                "psr/http-message": "Required to allow Storage::put to accept a StreamInterface (^1.0)",
                 "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (^4.0).",
                 "symfony/cache": "Required to PSR-6 cache bridge (^4.3.4).",
                 "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^1.2).",
@@ -1127,7 +1128,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-10-01T13:55:56+00:00"
+            "time": "2019-10-08T12:50:06+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1321,16 +1322,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.55",
+            "version": "1.0.56",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "33c91155537c6dc899eacdc54a13ac6303f156e6"
+                "reference": "90e3f83cb10ef6b058d70f95267030e7a6236518"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/33c91155537c6dc899eacdc54a13ac6303f156e6",
-                "reference": "33c91155537c6dc899eacdc54a13ac6303f156e6",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/90e3f83cb10ef6b058d70f95267030e7a6236518",
+                "reference": "90e3f83cb10ef6b058d70f95267030e7a6236518",
                 "shasum": ""
             },
             "require": {
@@ -1401,7 +1402,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2019-08-24T11:17:19+00:00"
+            "time": "2019-10-12T13:05:59+00:00"
         },
         {
             "name": "maatwebsite/laravel-sidebar",
@@ -1592,16 +1593,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.25.1",
+            "version": "2.25.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1"
+                "reference": "443fe5f1498147e0fbc792142b5dc43e2e8a533f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1",
-                "reference": "d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/443fe5f1498147e0fbc792142b5dc43e2e8a533f",
+                "reference": "443fe5f1498147e0fbc792142b5dc43e2e8a533f",
                 "shasum": ""
             },
             "require": {
@@ -1655,7 +1656,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-10-05T15:52:23+00:00"
+            "time": "2019-10-14T14:18:59+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -2374,16 +2375,16 @@
         },
         {
             "name": "spatie/laravel-query-builder",
-            "version": "2.2.1",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-query-builder.git",
-                "reference": "197d42f7d93d67183ca60c5c011e8c5c48b6cd56"
+                "reference": "e66471c34b28a9511bb545d8c8ec0164b2913301"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-query-builder/zipball/197d42f7d93d67183ca60c5c011e8c5c48b6cd56",
-                "reference": "197d42f7d93d67183ca60c5c011e8c5c48b6cd56",
+                "url": "https://api.github.com/repos/spatie/laravel-query-builder/zipball/e66471c34b28a9511bb545d8c8ec0164b2913301",
+                "reference": "e66471c34b28a9511bb545d8c8ec0164b2913301",
                 "shasum": ""
             },
             "require": {
@@ -2428,7 +2429,7 @@
                 "laravel-query-builder",
                 "spatie"
             ],
-            "time": "2019-10-03T09:25:23+00:00"
+            "time": "2019-10-08T08:48:28+00:00"
         },
         {
             "name": "spatie/laravel-translatable",
@@ -4082,16 +4083,16 @@
         },
         {
             "name": "typicms/files",
-            "version": "7.0.1",
+            "version": "7.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TypiCMS/Files.git",
-                "reference": "fd3dfeeab3546f71a4483f17ae054b48f5fd0b65"
+                "reference": "4f418013a260f5eef5d154fa890698dde9f45797"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TypiCMS/Files/zipball/fd3dfeeab3546f71a4483f17ae054b48f5fd0b65",
-                "reference": "fd3dfeeab3546f71a4483f17ae054b48f5fd0b65",
+                "url": "https://api.github.com/repos/TypiCMS/Files/zipball/4f418013a260f5eef5d154fa890698dde9f45797",
+                "reference": "4f418013a260f5eef5d154fa890698dde9f45797",
                 "shasum": ""
             },
             "require": {
@@ -4113,7 +4114,7 @@
                     "email": "sdebacker@gmail.com"
                 }
             ],
-            "time": "2019-09-04T12:59:59+00:00"
+            "time": "2019-10-10T09:30:08+00:00"
         },
         {
             "name": "typicms/form",
@@ -4349,16 +4350,16 @@
         },
         {
             "name": "typicms/objects",
-            "version": "7.0.3",
+            "version": "7.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TypiCMS/Objects.git",
-                "reference": "c0bc651a13cdc8d612366c9d6b94a9f62023b113"
+                "reference": "0677c38e357eae69e669edb1150b7f267b4ed209"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TypiCMS/Objects/zipball/c0bc651a13cdc8d612366c9d6b94a9f62023b113",
-                "reference": "c0bc651a13cdc8d612366c9d6b94a9f62023b113",
+                "url": "https://api.github.com/repos/TypiCMS/Objects/zipball/0677c38e357eae69e669edb1150b7f267b4ed209",
+                "reference": "0677c38e357eae69e669edb1150b7f267b4ed209",
                 "shasum": ""
             },
             "require": {
@@ -4375,7 +4376,7 @@
                     "email": "sdebacker@gmail.com"
                 }
             ],
-            "time": "2019-09-11T09:09:00+00:00"
+            "time": "2019-10-08T19:35:57+00:00"
         },
         {
             "name": "typicms/pages",
@@ -4957,16 +4958,16 @@
         },
         {
             "name": "facade/flare-client-php",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/flare-client-php.git",
-                "reference": "4de2e8062e66edadbff261ebb5baae6eccfb799c"
+                "reference": "608c2be3157b09f1868ca97ea4ddf3434ee83d63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/4de2e8062e66edadbff261ebb5baae6eccfb799c",
-                "reference": "4de2e8062e66edadbff261ebb5baae6eccfb799c",
+                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/608c2be3157b09f1868ca97ea4ddf3434ee83d63",
+                "reference": "608c2be3157b09f1868ca97ea4ddf3434ee83d63",
                 "shasum": ""
             },
             "require": {
@@ -5007,20 +5008,20 @@
                 "flare",
                 "reporting"
             ],
-            "time": "2019-09-27T14:54:17+00:00"
+            "time": "2019-10-07T19:15:46+00:00"
         },
         {
             "name": "facade/ignition",
-            "version": "1.9.2",
+            "version": "1.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "9b312a29fb6c781d5e2f4e41fb42ce3fde63a237"
+                "reference": "862cbc2dfffa1fa28b47822a116e5b2e03b421db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/9b312a29fb6c781d5e2f4e41fb42ce3fde63a237",
-                "reference": "9b312a29fb6c781d5e2f4e41fb42ce3fde63a237",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/862cbc2dfffa1fa28b47822a116e5b2e03b421db",
+                "reference": "862cbc2dfffa1fa28b47822a116e5b2e03b421db",
                 "shasum": ""
             },
             "require": {
@@ -5078,7 +5079,7 @@
                 "laravel",
                 "page"
             ],
-            "time": "2019-10-04T09:34:40+00:00"
+            "time": "2019-10-13T10:42:06+00:00"
         },
         {
             "name": "facade/ignition-contracts",
@@ -5285,25 +5286,25 @@
         },
         {
             "name": "maximebf/debugbar",
-            "version": "v1.15.0",
+            "version": "v1.15.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/maximebf/php-debugbar.git",
-                "reference": "30e7d60937ee5f1320975ca9bc7bcdd44d500f07"
+                "reference": "6c4277f6117e4864966c9cb58fb835cee8c74a1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/30e7d60937ee5f1320975ca9bc7bcdd44d500f07",
-                "reference": "30e7d60937ee5f1320975ca9bc7bcdd44d500f07",
+                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/6c4277f6117e4864966c9cb58fb835cee8c74a1e",
+                "reference": "6c4277f6117e4864966c9cb58fb835cee8c74a1e",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0",
+                "php": ">=5.6",
                 "psr/log": "^1.0",
-                "symfony/var-dumper": "^2.6|^3.0|^4.0"
+                "symfony/var-dumper": "^2.6|^3|^4"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.0|^5.0"
+                "phpunit/phpunit": "^5"
             },
             "suggest": {
                 "kriswallsmith/assetic": "The best way to manage assets",
@@ -5313,7 +5314,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.14-dev"
+                    "dev-master": "1.15-dev"
                 }
             },
             "autoload": {
@@ -5342,7 +5343,7 @@
                 "debug",
                 "debugbar"
             ],
-            "time": "2017-12-15T11:13:46+00:00"
+            "time": "2019-09-24T14:55:42+00:00"
         },
         {
             "name": "mockery/mockery",

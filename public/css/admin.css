@@ -15062,7 +15062,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .multiinput-elem-remove {
-  color: red;
+  color: #dc3545;
   cursor: pointer;
   text-align: right;
 }
@@ -15139,10 +15139,17 @@ a.text-dark:hover, a.text-dark:focus {
 .multiinput table tr td .filemanager-item-trans .filemanager-item-message {
   display: none;
   background-color: #fff;
-  border: 1px solid red;
+  border: 1px solid #dc3545;
   align-items: center;
   text-align: center;
-  color: red;
+  color: #dc3545;
+}
+
+.multiinput-invalid-feedback {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
 }
 
 .modal-dialog {
