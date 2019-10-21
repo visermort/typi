@@ -30,6 +30,10 @@ class Product extends Base
         'body',
     ];
 
+    protected $casts = [
+        'advantages' => 'array',
+    ];
+
     public function getThumbAttribute(): string
     {
         return $this->present()->image(null, 54);
