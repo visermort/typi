@@ -46,4 +46,6 @@ return [
 
 
     'admin_locale' => 'en',
+
+    'register' => true,//enable user registration
 ];

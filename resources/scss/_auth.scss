@@ -95,4 +95,11 @@
     .alert-not-a-member {
         margin-bottom: 0;
     }
+    &_socials-header {
+        text-align: center;
+    }
+    &_socials-items {
+        display: flex;
+        justify-content: center;
+    }
 }

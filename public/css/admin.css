@@ -12967,6 +12967,15 @@ a.text-dark:hover, a.text-dark:focus {
   margin-bottom: 0;
 }
 
+.auth-container_socials-header {
+  text-align: center;
+}
+
+.auth-container_socials-items {
+  display: flex;
+  justify-content: center;
+}
+
 /* Fancybox custom styling goes here */
 .alertify-logs > * {
   padding: 12px 24px;

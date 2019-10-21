@@ -46,6 +46,8 @@
             {!! BootForm::submit(__('Register'), 'btn-primary')->addClass('btn-lg btn-block') !!}
         </div>
 
+        @include ('auth/socialite')
+
     {!! BootForm::close() !!}
 
 </div>

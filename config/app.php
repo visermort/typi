@@ -216,6 +216,8 @@ return [
          */
         TypiCMS\Modules\Pages\Providers\ModuleProvider::class,
 
+        SocialiteProviders\Manager\ServiceProvider::class,
+
     ],
 
     /*
@@ -274,6 +276,8 @@ return [
         'TranslatableBootForm' => TypiCMS\LaravelTranslatableBootForms\Facades\TranslatableBootForm::class,
 
         'CustomMenu' => App\Classes\Menu\Menu::class,
+
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

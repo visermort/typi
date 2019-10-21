@@ -73,6 +73,8 @@
             </nav>
             @show
 
+            @include ('auth.nav_user')
+
         </div>
 
         @if (session('verified'))

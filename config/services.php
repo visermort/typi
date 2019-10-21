@@ -33,5 +33,26 @@ return [
     'gmaps' => [
         'key' => env('GMAPS_API_KEY'),
     ],
+    'google' => [
+        'client_id' => env('GOOGLE_APPID'),
+        'client_secret' => env('GOOGLE_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT'),
+        'account' => 'https://plus.google.com/u/0/',
+        'icon' => 'fa fa-google-plus',
+    ],
+    'facebook' => [
+        'client_id' => env('FACEBOOK_APPID'),
+        'client_secret' => env('FACEBOOK_SECRET'),
+        'redirect' => env('FACEBOOK_REDIRECT'),
+        'account' => 'https://www.facebook.com/',
+        'icon' => 'fa fa-facebook',
+    ],
+    'vkontakte' => [
+        'account' => 'https://vk.com/id',
+        'icon' => 'fa fa-vk',
+        'client_id' => env('VKONTAKTE_KEY'),
+        'client_secret' => env('VKONTAKTE_SECRET'),
+        'redirect' => env('VKONTAKTE_REDIRECT_URI')
+    ],
 
 ];
