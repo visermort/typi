@@ -25,17 +25,27 @@ Route::group(['middleware' => 'guest'], function () {
         if (TypiCMS::mainLocale() !== $locale ||
             config('typicms.main_locale_in_url')
         ) {
-            Route::prefix($locale)->any('/social_login/email-request', 'Auth\SocialController@emailRequest');
-            Route::prefix($locale)->get('/social_login/email-verify', 'Auth\SocialController@emailVerify')->name('social.email-verify');
-            Route::prefix($locale)->get('/social_login/email-send', 'Auth\SocialController@emailSend');
-            Route::prefix($locale)->get('/social_login/{provider}', 'Auth\SocialController@login');
-            Route::prefix($locale)->get('/social_login/callback/{provider}', 'Auth\SocialController@callback');
+            Route::prefix($locale)->any('/social_login/email-request', 'Auth\SocialController@emailRequest')
+                ->name('social.email-request');
+            Route::prefix($locale)->get('/social_login/email-verify', 'Auth\SocialController@emailVerify')
+                ->name('social.email-verify')->middleware('signed');
+            Route::prefix($locale)->get('/social_login/email-send', 'Auth\SocialController@emailSend')
+                ->name('social.email-sent');
+            Route::prefix($locale)->get('/social_login/{provider}', 'Auth\SocialController@login')
+                ->name('social.login');
+            Route::prefix($locale)->get('/social_login/callback/{provider}', 'Auth\SocialController@callback')
+                ->name('social.callback');
         } else {
-            Route::any('/social_login/email-request', 'Auth\SocialController@emailRequest');
-            Route::get('/social_login/email-verify', 'Auth\SocialController@emailVerify')->name('social.email-verify');
-            Route::get('/social_login/email-send', 'Auth\SocialController@emailSend');
-            Route::get('/social_login/{provider}', 'Auth\SocialController@login');
-            Route::get('/social_login/callback/{provider}', 'Auth\SocialController@callback');
+            Route::any('/social_login/email-request', 'Auth\SocialController@emailRequest')
+                ->name('social.email-request');
+            Route::get('/social_login/email-verify', 'Auth\SocialController@emailVerify')
+                ->name('social.email-verify')->middleware('signed');
+            Route::get('/social_login/email-send', 'Auth\SocialController@emailSend')
+                ->name('social.email-sent');
+            Route::get('/social_login/{provider}', 'Auth\SocialController@login')
+                ->name('social.login');
+            Route::get('/social_login/callback/{provider}', 'Auth\SocialController@callback')
+                ->name('social.callback');
         }
     }
 

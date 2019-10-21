@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Socialite;
 use App\Models\UserSocialAccount;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\SocialEmailVerification;
 use Illuminate\Support\Str;
@@ -41,7 +40,7 @@ class SocialController extends Controller
         } else {
             //юсера пока нет нужен email
             $request->session()->put('social_user_id', $socialUser->id);
-            return redirect()->action('\App\Http\Controllers\Auth\SocialController@emailRequest');
+            return redirect()->route('social.email-request');
         }
     }
 
@@ -66,7 +65,7 @@ class SocialController extends Controller
 
             $socialUser->notify(new SocialEmailVerification());
 
-            return redirect()->action('\App\Http\Controllers\Auth\SocialController@emailSend')->with('send', true);
+            return redirect()->route('social.email-sent')->with('send', true);
         }
 
         return view('auth.email_request', [
