@@ -19,6 +19,8 @@ return [
             "sort" => "ASC",
             "title" => "ASC"
         ],
+        "clone-enable" => true,
+        "sort-enable" => true,
         "columns" => [
             [
                 "name" => "title",
@@ -54,9 +56,7 @@ return [
                 "name" => "advantage_image",
                 "title" => "Image",
                 "type" => "Image",
-                "translatable" => true,
-                'rules' => 'required',
-
+                "translatable" => true
             ],
             [
                 "name" => "document",
@@ -90,8 +90,7 @@ return [
                     [
                         "name" => "feature_image",
                         "title" => "Feature Image",
-                        "type" => "Image",
-                        'rules' => 'required',
+                        "type" => "Image"
                     ],
                 ],
                 "order" => ["feature_title" => "ASC"],

@@ -18,7 +18,7 @@
 </div>
 
 <div class="form-group">
-    {!! MultiInput::render('advantages', 'advantages', $model) !!}
+    {!! MultiInput::render('advantages', 'advantages', $model, ['columns' => ['templates' => ['items' => TypiCMS::templates()]]]) !!}
 </div>
 
 {!! TranslatableBootForm::textarea(__('Summary'), 'summary')->rows(4) !!}

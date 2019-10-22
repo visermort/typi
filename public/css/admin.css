@@ -15070,6 +15070,10 @@ a.text-dark:hover, a.text-dark:focus {
   margin-right: 8px;
 }
 
+.multiinput-elem-clone {
+  cursor: pointer;
+}
+
 .multiinput-elem-remove {
   color: #dc3545;
   cursor: pointer;
@@ -15080,12 +15084,12 @@ a.text-dark:hover, a.text-dark:focus {
   margin: 6px 6px 0 0;
 }
 
-.multiinput table tr:only-child > td.multiinput-elem-remove i {
+.multiinput table tr:only-child > td.multiinput-elem-actions i.multiinput-elem-remove {
   display: none;
 }
 
-.multiinput table tr:not(:last-child) {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+.multiinput table tr:only-child > td.sortable-handle {
+  display: none;
 }
 
 .multiinput table tr td {
@@ -15152,6 +15156,14 @@ a.text-dark:hover, a.text-dark:focus {
   align-items: center;
   text-align: center;
   color: #dc3545;
+}
+
+.multiinput table tr td.multiinput-elem-actions {
+  padding: 6px;
+}
+
+.multiinput table tr td.sortable-handle {
+  cursor: move;
 }
 
 .multiinput-invalid-feedback {
