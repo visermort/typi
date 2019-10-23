@@ -10,6 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Arr;
+
+/**
+ * function not exists in laravel 6.xx, but uses in extension
+ * @param $array
+ * @param $key
+ * @return mixed
+ */
+function array_get($array, $key)
+{
+    return Arr::get($array, $key);
+}
 
 // Route::get('/', function () {
 //     return view('welcome');
