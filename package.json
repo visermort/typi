@@ -21,7 +21,7 @@
         "cross-env": "^5.2",
         "dropzone": "^5.5",
         "font-awesome": "^4.7",
-        "jquery": "^3.3",
+        "jquery": "^3.5",
         "laravel-mix": "^4.1.0",
         "lodash": "^4.17.13",
         "node-sass": "^4.11.0",
